@@ -17,6 +17,12 @@
         <li>Your template at <code><a href="{{ 'C:/wamp64/www/linktree_clone/templates/site/index.html.twig'|file_link(0) }}">templates/site/index.html.twig</a></code></li>
     </ul>
 
-    <a href="{{ path('app_login') }}" class="">Login</a>
+    {% if is_granted('ROLE_USER') %}
+        <a href="{{ path('app_dashboard') }}" class="">Go to dashboard</a>
+        <a href="{{ path('app_logout') }}" class="">LOGOUT</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="">Login</a>
+    {% endif %}
+
 </div>
 {% endblock %}
