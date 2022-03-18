@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <main class="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
+        {{ form_start(registrationForm,{attr: {'class': 'flex w-[30rem] flex-col space-y-10'}}) }}
+
+        <h1 class="text-center text-4xl font-medium">Register</h1>
+
+        <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+            {{ form_row(registrationForm.email,{attr: {'class': 'w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none','placeholder': 'Email'} }) }}
+        </div>
+
+        <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password',
+                attr: {'class': 'w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none','placeholder': 'Password'}
+            }) }}
+        </div>
+
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400">Register</button>
+        {{ form_end(registrationForm) }}
+    </main>
+
+
+{% endblock %}
