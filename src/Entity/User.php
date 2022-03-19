@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -30,6 +32,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     private ?string $plainPassword;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Links::class)]
+    private $links;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Colors::class)]
+    private $colors;
+
+    public function __construct()
+    {
+        $this->links = new ArrayCollection();
+        $this->colors = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,5 +138,65 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(string $plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return Collection<int, Links>
+     */
+    public function getLinks(): Collection
+    {
+        return $this->links;
+    }
+
+    public function addLink(Links $link): self
+    {
+        if (!$this->links->contains($link)) {
+            $this->links[] = $link;
+            $link->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLink(Links $link): self
+    {
+        if ($this->links->removeElement($link)) {
+            // set the owning side to null (unless already changed)
+            if ($link->getUserId() === $this) {
+                $link->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Colors>
+     */
+    public function getColors(): Collection
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Colors $color): self
+    {
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeColor(Colors $color): self
+    {
+        if ($this->colors->removeElement($color)) {
+            // set the owning side to null (unless already changed)
+            if ($color->getUserId() === $this) {
+                $color->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 }
