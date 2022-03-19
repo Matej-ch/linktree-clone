@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LinksRepository;
+use App\Repository\LinkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LinksRepository::class)]
-class Links
+#[ORM\Entity(repositoryClass: LinkRepository::class)]
+class Link
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,7 +31,7 @@ class Links
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'link_id', targetEntity: LinkVisits::class)]
+    #[ORM\OneToMany(mappedBy: 'link_id', targetEntity: LinkVisit::class)]
     private $linkVisits;
 
     public function __construct()
@@ -105,14 +105,14 @@ class Links
     }
 
     /**
-     * @return Collection<int, LinkVisits>
+     * @return Collection<int, LinkVisit>
      */
     public function getLinkVisits(): Collection
     {
         return $this->linkVisits;
     }
 
-    public function addLinkVisit(LinkVisits $linkVisit): self
+    public function addLinkVisit(LinkVisit $linkVisit): self
     {
         if (!$this->linkVisits->contains($linkVisit)) {
             $this->linkVisits[] = $linkVisit;
@@ -122,7 +122,7 @@ class Links
         return $this;
     }
 
-    public function removeLinkVisit(LinkVisits $linkVisit): self
+    public function removeLinkVisit(LinkVisit $linkVisit): self
     {
         if ($this->linkVisits->removeElement($linkVisit)) {
             // set the owning side to null (unless already changed)

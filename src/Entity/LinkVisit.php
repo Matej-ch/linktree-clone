@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ColorVisitsRepository;
+use App\Repository\LinkVisitRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ColorVisitsRepository::class)]
-class ColorVisits
+#[ORM\Entity(repositoryClass: LinkVisitRepository::class)]
+class LinkVisit
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,9 +22,9 @@ class ColorVisits
     #[ORM\Column(type: 'string', length: 2048, nullable: true)]
     private $user_agent;
 
-    #[ORM\ManyToOne(targetEntity: Colors::class, inversedBy: 'colorVisits')]
+    #[ORM\ManyToOne(targetEntity: Link::class, inversedBy: 'linkVisits')]
     #[ORM\JoinColumn(nullable: false)]
-    private $color_id;
+    private $link_id;
 
     public function getId(): ?int
     {
@@ -67,14 +67,14 @@ class ColorVisits
         return $this;
     }
 
-    public function getColorId(): ?Colors
+    public function getLinkId(): ?Link
     {
-        return $this->color_id;
+        return $this->link_id;
     }
 
-    public function setColorId(?Colors $color_id): self
+    public function setLinkId(?Link $link_id): self
     {
-        $this->color_id = $color_id;
+        $this->link_id = $link_id;
 
         return $this;
     }

@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\Factory\ColorsFactory;
-use App\Factory\LinksFactory;
+use App\Factory\ColorFactory;
+use App\Factory\LinkFactory;
 use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -18,13 +18,13 @@ class AppFixtures extends Fixture
 
         UserFactory::createMany(10);
 
-        $links = LinksFactory::createMany(50, static function () {
+        $links = LinkFactory::createMany(50, static function () {
             return [
                 'user' => UserFactory::random()
             ];
         });
 
-        $colors = ColorsFactory::createMany(50, static function () {
+        $colors = ColorFactory::createMany(50, static function () {
             return [
                 'user' => UserFactory::random()
             ];

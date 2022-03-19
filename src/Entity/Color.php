@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ColorsRepository;
+use App\Repository\ColorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ColorsRepository::class)]
-class Colors
+#[ORM\Entity(repositoryClass: ColorRepository::class)]
+class Color
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,7 +34,7 @@ class Colors
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'color_id', targetEntity: ColorVisits::class)]
+    #[ORM\OneToMany(mappedBy: 'color_id', targetEntity: ColorVisit::class)]
     private $colorVisits;
 
     public function __construct()
@@ -120,14 +120,14 @@ class Colors
     }
 
     /**
-     * @return Collection<int, ColorVisits>
+     * @return Collection<int, ColorVisit>
      */
     public function getColorVisits(): Collection
     {
         return $this->colorVisits;
     }
 
-    public function addColorVisit(ColorVisits $colorVisit): self
+    public function addColorVisit(ColorVisit $colorVisit): self
     {
         if (!$this->colorVisits->contains($colorVisit)) {
             $this->colorVisits[] = $colorVisit;
@@ -137,7 +137,7 @@ class Colors
         return $this;
     }
 
-    public function removeColorVisit(ColorVisits $colorVisit): self
+    public function removeColorVisit(ColorVisit $colorVisit): self
     {
         if ($this->colorVisits->removeElement($colorVisit)) {
             // set the owning side to null (unless already changed)

@@ -33,10 +33,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $plainPassword;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Links::class)]
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Link::class)]
     private $links;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Colors::class)]
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Color::class)]
     private $colors;
 
     public function __construct()
@@ -141,14 +141,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Links>
+     * @return Collection<int, Link>
      */
     public function getLinks(): Collection
     {
         return $this->links;
     }
 
-    public function addLink(Links $link): self
+    public function addLink(Link $link): self
     {
         if (!$this->links->contains($link)) {
             $this->links[] = $link;
@@ -158,7 +158,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeLink(Links $link): self
+    public function removeLink(Link $link): self
     {
         if ($this->links->removeElement($link)) {
             // set the owning side to null (unless already changed)
@@ -171,14 +171,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Colors>
+     * @return Collection<int, Color>
      */
     public function getColors(): Collection
     {
         return $this->colors;
     }
 
-    public function addColor(Colors $color): self
+    public function addColor(Color $color): self
     {
         if (!$this->colors->contains($color)) {
             $this->colors[] = $color;
@@ -188,7 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeColor(Colors $color): self
+    public function removeColor(Color $color): self
     {
         if ($this->colors->removeElement($color)) {
             // set the owning side to null (unless already changed)

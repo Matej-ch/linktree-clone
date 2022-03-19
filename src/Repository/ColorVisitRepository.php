@@ -2,30 +2,28 @@
 
 namespace App\Repository;
 
-use App\Entity\Colors;
+use App\Entity\ColorVisit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Colors|null find($id, $lockMode = null, $lockVersion = null)
- * @method Colors|null findOneBy(array $criteria, array $orderBy = null)
- * @method Colors[]    findAll()
- * @method Colors[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ColorVisit|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ColorVisit|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ColorVisit[]    findAll()
+ * @method ColorVisit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ColorsRepository extends ServiceEntityRepository
+class ColorVisitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Colors::class);
+        parent::__construct($registry, ColorVisit::class);
     }
 
     /**
-     * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Colors $entity, bool $flush = true): void
+    public function add(ColorVisit $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -34,10 +32,9 @@ class ColorsRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Colors $entity, bool $flush = true): void
+    public function remove(ColorVisit $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +43,7 @@ class ColorsRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Colors[] Returns an array of Colors objects
+    //  * @return ColorVisit[] Returns an array of ColorVisit objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +60,7 @@ class ColorsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Colors
+    public function findOneBySomeField($value): ?ColorVisit
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

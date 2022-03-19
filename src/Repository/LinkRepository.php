@@ -2,28 +2,28 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
+use App\Entity\Link;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method User|null find($id, $lockMode = null, $lockVersion = null)
- * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[]    findAll()
- * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Link|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Link|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Link[]    findAll()
+ * @method Link[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class LinkRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, User::class);
+        parent::__construct($registry, Link::class);
     }
 
     /**
      * @throws OptimisticLockException
      */
-    public function add(User $entity, bool $flush = true): void
+    public function add(Link $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -34,7 +34,7 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @throws OptimisticLockException
      */
-    public function remove(User $entity, bool $flush = true): void
+    public function remove(Link $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {

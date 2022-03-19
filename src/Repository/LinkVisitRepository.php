@@ -2,30 +2,28 @@
 
 namespace App\Repository;
 
-use App\Entity\LinkVisits;
+use App\Entity\LinkVisit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method LinkVisits|null find($id, $lockMode = null, $lockVersion = null)
- * @method LinkVisits|null findOneBy(array $criteria, array $orderBy = null)
- * @method LinkVisits[]    findAll()
- * @method LinkVisits[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method LinkVisit|null find($id, $lockMode = null, $lockVersion = null)
+ * @method LinkVisit|null findOneBy(array $criteria, array $orderBy = null)
+ * @method LinkVisit[]    findAll()
+ * @method LinkVisit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LinkVisitsRepository extends ServiceEntityRepository
+class LinkVisitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LinkVisits::class);
+        parent::__construct($registry, LinkVisit::class);
     }
 
     /**
-     * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(LinkVisits $entity, bool $flush = true): void
+    public function add(LinkVisit $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -34,10 +32,9 @@ class LinkVisitsRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(LinkVisits $entity, bool $flush = true): void
+    public function remove(LinkVisit $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +43,7 @@ class LinkVisitsRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return LinkVisits[] Returns an array of LinkVisits objects
+    //  * @return LinkVisit[] Returns an array of LinkVisit objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +60,7 @@ class LinkVisitsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?LinkVisits
+    public function findOneBySomeField($value): ?LinkVisit
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

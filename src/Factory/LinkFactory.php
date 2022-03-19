@@ -2,31 +2,31 @@
 
 namespace App\Factory;
 
-use App\Entity\Links;
-use App\Repository\LinksRepository;
+use App\Entity\Link;
+use App\Repository\LinkRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 
 /**
- * @extends ModelFactory<Links>
+ * @extends ModelFactory<Link>
  *
- * @method static Links|Proxy createOne(array $attributes = [])
- * @method static Links[]|Proxy[] createMany(int $number, array|callable $attributes = [])
- * @method static Links|Proxy find(object|array|mixed $criteria)
- * @method static Links|Proxy findOrCreate(array $attributes)
- * @method static Links|Proxy first(string $sortedField = 'id')
- * @method static Links|Proxy last(string $sortedField = 'id')
- * @method static Links|Proxy random(array $attributes = [])
- * @method static Links|Proxy randomOrCreate(array $attributes = [])
- * @method static Links[]|Proxy[] all()
- * @method static Links[]|Proxy[] findBy(array $attributes)
- * @method static Links[]|Proxy[] randomSet(int $number, array $attributes = [])
- * @method static Links[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static LinksRepository|RepositoryProxy repository()
- * @method Links|Proxy create(array|callable $attributes = [])
+ * @method static Link|Proxy createOne(array $attributes = [])
+ * @method static Link[]|Proxy[] createMany(int $number, array|callable $attributes = [])
+ * @method static Link|Proxy find(object|array|mixed $criteria)
+ * @method static Link|Proxy findOrCreate(array $attributes)
+ * @method static Link|Proxy first(string $sortedField = 'id')
+ * @method static Link|Proxy last(string $sortedField = 'id')
+ * @method static Link|Proxy random(array $attributes = [])
+ * @method static Link|Proxy randomOrCreate(array $attributes = [])
+ * @method static Link[]|Proxy[] all()
+ * @method static Link[]|Proxy[] findBy(array $attributes)
+ * @method static Link[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static Link[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
+ * @method static LinkRepository|RepositoryProxy repository()
+ * @method Link|Proxy create(array|callable $attributes = [])
  */
-final class LinksFactory extends ModelFactory
+final class LinkFactory extends ModelFactory
 {
     public function __construct()
     {
@@ -57,6 +57,6 @@ final class LinksFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return Links::class;
+        return Link::class;
     }
 }

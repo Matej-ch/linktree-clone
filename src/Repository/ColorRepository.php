@@ -2,30 +2,28 @@
 
 namespace App\Repository;
 
-use App\Entity\Links;
+use App\Entity\Color;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Links|null find($id, $lockMode = null, $lockVersion = null)
- * @method Links|null findOneBy(array $criteria, array $orderBy = null)
- * @method Links[]    findAll()
- * @method Links[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Color|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Color|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Color[]    findAll()
+ * @method Color[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LinksRepository extends ServiceEntityRepository
+class ColorRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Links::class);
+        parent::__construct($registry, Color::class);
     }
 
     /**
-     * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Links $entity, bool $flush = true): void
+    public function add(Color $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -34,10 +32,9 @@ class LinksRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Links $entity, bool $flush = true): void
+    public function remove(Color $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +43,15 @@ class LinksRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Links[] Returns an array of Links objects
+    //  * @return Color[] Returns an array of Color objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
+            ->orderBy('c.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +60,10 @@ class LinksRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Links
+    public function findOneBySomeField($value): ?Color
     {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
