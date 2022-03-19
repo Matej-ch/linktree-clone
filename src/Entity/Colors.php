@@ -32,7 +32,7 @@ class Colors
 
     #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'colors')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $user;
 
     #[ORM\OneToMany(mappedBy: 'color_id', targetEntity: ColorVisits::class)]
     private $colorVisits;
@@ -71,14 +71,14 @@ class Colors
         return $this;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?user $user_id): self
+    public function setUser(?user $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

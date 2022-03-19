@@ -152,7 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->links->contains($link)) {
             $this->links[] = $link;
-            $link->setUserId($this);
+            $link->setUser($this);
         }
 
         return $this;
@@ -162,8 +162,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->links->removeElement($link)) {
             // set the owning side to null (unless already changed)
-            if ($link->getUserId() === $this) {
-                $link->setUserId(null);
+            if ($link->getUser() === $this) {
+                $link->setUser(null);
             }
         }
 
@@ -182,7 +182,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->colors->contains($color)) {
             $this->colors[] = $color;
-            $color->setUserId($this);
+            $color->setUser($this);
         }
 
         return $this;
@@ -192,8 +192,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->colors->removeElement($color)) {
             // set the owning side to null (unless already changed)
-            if ($color->getUserId() === $this) {
-                $color->setUserId(null);
+            if ($color->getUser() === $this) {
+                $color->setUser(null);
             }
         }
 

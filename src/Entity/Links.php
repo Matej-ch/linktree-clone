@@ -29,7 +29,7 @@ class Links
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'links')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $user;
 
     #[ORM\OneToMany(mappedBy: 'link_id', targetEntity: LinkVisits::class)]
     private $linkVisits;
@@ -92,14 +92,14 @@ class Links
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
