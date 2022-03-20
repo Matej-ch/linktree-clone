@@ -48,6 +48,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(name: 'totpSecret', type: 'string', nullable: true)]
     private ?string $totpSecret;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $backgroundColor = '#ffffff';
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $textColor = '#000000';
+
     public function __construct()
     {
         $this->links = new ArrayCollection();
@@ -243,6 +249,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setTotpSecret(?string $totpSecret): self
     {
         $this->totpSecret = $totpSecret;
+
+        return $this;
+    }
+
+    public function getBackgroundColor(): ?string
+    {
+        return $this->backgroundColor;
+    }
+
+    public function setBackgroundColor(string $backgroundColor): self
+    {
+        $this->backgroundColor = $backgroundColor;
+
+        return $this;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(string $textColor): self
+    {
+        $this->textColor = $textColor;
 
         return $this;
     }

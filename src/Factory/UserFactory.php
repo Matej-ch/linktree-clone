@@ -47,19 +47,20 @@ final class UserFactory extends ModelFactory
             'roles' => [],
             'name' => self::faker()->firstName(),
             'plainPassword' => 'tada',
-            'isVerified' => true
+            'isVerified' => true,
+            'backgroundColor' => '#ffffff',
+            'textColor' => '#000000'
         ];
     }
 
     protected function initialize(): self
     {
         // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this->afterInstantiate(function(User $user): void {
-            if($user->getPlainPassword()) {
-                $user->setPassword($this->passwordHasher->hashPassword($user,$user->getPlainPassword()));
+        return $this->afterInstantiate(function (User $user): void {
+            if ($user->getPlainPassword()) {
+                $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPlainPassword()));
             }
-        })
-        ;
+        });
     }
 
     protected static function getClass(): string
