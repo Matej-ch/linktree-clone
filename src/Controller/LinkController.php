@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LinkController extends AbstractController
 {
-    #[Route('/link', name: 'app_link')]
+    #[Route('/dashboard/link', name: 'app_link')]
     public function index(): Response
     {
         return $this->render('link/index.html.twig', [
@@ -17,7 +17,7 @@ class LinkController extends AbstractController
         ]);
     }
 
-    #[Route('/link/edit/{id}', name: 'app_link_edit')]
+    #[Route('/dashboard/link/edit/{id}', name: 'app_link_edit')]
     public function edit(Link $link): Response
     {
         $this->denyAccessUnlessGranted('EDIT', $link);

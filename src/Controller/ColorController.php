@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ColorController extends AbstractController
 {
-    #[Route('/color', name: 'app_color')]
+    #[Route('/dashboard/color', name: 'app_color')]
     public function index(): Response
     {
         return $this->render('color/index.html.twig', [
@@ -17,9 +17,11 @@ class ColorController extends AbstractController
         ]);
     }
 
-    #[Route('/color/edit/{id}', name: 'app_color_edit')]
+    #[Route('/dashboard/color/edit/{id}', name: 'app_color_edit')]
     public function edit(Color $color): Response
     {
+
+        $this->denyAccessUnlessGranted('EDIT', $color);
 
         return $this->render('color/edit.html.twig', []);
     }
