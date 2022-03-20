@@ -28,7 +28,7 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface
             throw  new \Exception('Unexpected user type');
         }
 
-        if ($user->getIsVerified()) {
+        if (!$user->getIsVerified()) {
             throw new AccountNotVerifiedAuthenticationException();
         }
     }
