@@ -30,10 +30,12 @@ security:
                 enable_csrf: true
             logout: true
 
+            login_throttling: true
+
             remember_me:
                 secret: '%kernel.secret%'
                 always_remember_me: true
-                signature_properties: [password]
+                signature_properties: [ password ]
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
