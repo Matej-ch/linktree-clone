@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Authentication errors #}
+    {% if authenticationError %}
+        <p>{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}</p>
+    {% endif %}
+
+    {# Display current two-factor provider #}
+    <p class="label"><label for="_auth_code">{{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}
+            :</label></p>
+
+    <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post">
+        <p class="widget">
+            <input
+                    id="_auth_code"
+                    type="text"
+                    name="{{ authCodeParameterName }}"
+                    autocomplete="one-time-code"
+                    autofocus
+            />
+        </p>
+
+        {% if displayTrustedOption %}
+            <p class="widget">
+                <label for="_trusted">
+                    <input id="_trusted" type="checkbox"
+                           name="{{ trustedParameterName }}"/> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}
+                </label>
+            </p>
+        {% endif %}
+
+        {% if isCsrfProtectionEnabled %}
+            <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+        {% endif %}
+
+        {# The logout link gives the user a way out if they can't complete two-factor authentication #}
+        <a href="{{ logoutPath }}">{{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}</a>
+
+        <button type="submit" value="{{ "login"|trans({}, 'SchebTwoFactorBundle') }}"></button>
+    </form>
+{% endblock %}
+
+{% block title %}
+    2fa form
+{% endblock %}
+

@@ -17,6 +17,8 @@
 
     {% if is_granted('ROLE_USER') %}
         <a href="{{ path('app_logout') }}" class="">LOGOUT</a>
+
+        <a href="{{ path('app_2fa_enable') }}">Enable 2fa</a>
     {% endif %}
 </div>
 {% endblock %}

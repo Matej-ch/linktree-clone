@@ -19,7 +19,6 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface
         $this->router = $router;
     }
 
-
     public function onCheckPassport(CheckPassportEvent $event)
     {
         $passport = $event->getPassport();
