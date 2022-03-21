@@ -15,4 +15,22 @@ class SiteController extends AbstractController
             'controller_name' => 'SiteController',
         ]);
     }
+
+    #[Route('/visit/{link}', name: 'app_user_links_visits')]
+    public function visit()
+    {
+
+    }
+
+    #[Route('/{name}', name: 'app_user_links')]
+    public function links()
+    {
+
+    }
+
+    #[Route('/{name}/colors', name: 'app_user_colors')]
+    public function colors()
+    {
+
+    }
 }
