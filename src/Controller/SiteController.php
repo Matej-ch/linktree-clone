@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,13 +24,13 @@ class SiteController extends AbstractController
     }
 
     #[Route('/{name}', name: 'app_user_links')]
-    public function links()
+    public function links(User $user)
     {
-
+        dd($user);
     }
 
     #[Route('/{name}/colors', name: 'app_user_colors')]
-    public function colors()
+    public function colors(User $user)
     {
 
     }

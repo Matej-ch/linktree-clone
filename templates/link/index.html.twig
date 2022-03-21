@@ -1,41 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Link index{% endblock %}
+{% block title %}Links{% endblock %}
 
 {% block body %}
-    <h1>Link index</h1>
+    <h1 class="bg-white py-4 px-4 md:px-8 xl:px-4 text-xl font-bold">Your links</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Link</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for link in links %}
-            <tr>
-                <td>{{ link.id }}</td>
-                <td>{{ link.name }}</td>
-                <td>{{ link.link }}</td>
-                <td>{{ link.createdAt ? link.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ link.updatedAt ? link.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_link_show', {'id': link.id}) }}">show</a>
-                    <a href="{{ path('app_link_edit', {'id': link.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="bg-white py-4 md:py-4 px-4 md:px-4 xl:px-4">
+        <div class="sm:flex items-center justify-between">
+            <a class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
+               href="{{ path('app_link_new') }}">
+                <span class="text-sm font-medium leading-none text-white">Create new</span>
+            </a>
+        </div>
 
-    <a href="{{ path('app_link_new') }}">Create new</a>
+        <div class="mt-7 overflow-x-auto">
+            <table class="w-full whitespace-nowrap">
+                <thead>
+                <tr class="focus:outline-none h-16 border border-gray-100 rounded">
+                    <th>Name</th>
+                    <th>Link</th>
+                    <th>Visits</th>
+                    <th>Last visit</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for link in links %}
+                    <tr class="focus:outline-none h-16 border border-gray-100 rounded">
+                        <td>{{ link.name }}</td>
+                        <td>{{ link.link }}</td>
+                        <td>Visits</td>
+                        <td>Last visit</td>
+                        {# <td>{{ link.createdAt ? link.createdAt|date('d.m.Y H:i:s') : '' }}</td>
+                        <td>{{ link.updatedAt ? link.updatedAt|date('d.m.Y H:i:s') : '' }}</td> #}
+                        <td>
+                            <a href="{{ path('app_link_show', {'id': link.id}) }}">show</a>
+                            <a href="{{ path('app_link_edit', {'id': link.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 {% endblock %}

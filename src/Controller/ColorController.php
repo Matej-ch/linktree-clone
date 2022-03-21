@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/dashboard/color')]
+#[Route('/dashboard/colors')]
 class ColorController extends AbstractController
 {
     #[Route('/', name: 'app_color_index', methods: ['GET'])]
@@ -25,7 +25,7 @@ class ColorController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/color/new', name: 'app_color_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_color_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ColorRepository $colorRepository): Response
     {
         $color = new Color();
@@ -43,7 +43,7 @@ class ColorController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/color/{id}', name: 'app_color_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_color_show', methods: ['GET'])]
     public function show(Color $color): Response
     {
         $this->denyAccessUnlessGranted('EDIT', $color);
@@ -53,7 +53,7 @@ class ColorController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/color/{id}/edit', name: 'app_color_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_color_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Color $color, ColorRepository $colorRepository): Response
     {
         $this->denyAccessUnlessGranted('EDIT', $color);
@@ -72,7 +72,7 @@ class ColorController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/color/{id}', name: 'app_color_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_color_delete', methods: ['POST'])]
     public function delete(Request $request, Color $color, ColorRepository $colorRepository): Response
     {
         $this->denyAccessUnlessGranted('EDIT', $color);
