@@ -14,8 +14,6 @@ class ColorType extends AbstractType
         $builder
             ->add('name')
             ->add('value')
-            ->add('created_at')
-            ->add('updated_at')
             ->add('text');
     }
 

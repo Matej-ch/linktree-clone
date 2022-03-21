@@ -13,9 +13,7 @@ class LinkType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('link')
-            ->add('created_at')
-            ->add('updated_at');
+            ->add('link');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
