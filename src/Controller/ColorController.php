@@ -33,6 +33,7 @@ class ColorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $color->setUser($this->getUser());
             $colorRepository->add($color);
             return $this->redirectToRoute('app_color_index', [], Response::HTTP_SEE_OTHER);
         }

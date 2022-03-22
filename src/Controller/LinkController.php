@@ -33,6 +33,7 @@ class LinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $link->setUser($this->getUser());
             $linkRepository->add($link);
             return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
