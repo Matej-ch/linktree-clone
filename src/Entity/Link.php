@@ -6,8 +6,14 @@ use App\Repository\LinkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\Event\PreUpdateEventArgs;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
+#[HasLifecycleCallbacks]
 class Link
 {
     #[ORM\Id]
@@ -21,10 +27,10 @@ class Link
     #[ORM\Column(type: 'string', length: 1024)]
     private $link;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $created_at;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $updated_at;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'links')]
@@ -132,5 +138,18 @@ class Link
         }
 
         return $this;
+    }
+
+    #[PrePersist]
+    public function setTimestamps(LifecycleEventArgs $eventArgs)
+    {
+        $this->created_at = new \DateTime(date('Y-m-d H:i:s'));
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    #[PreUpdate]
+    public function updateTimestamps(PreUpdateEventArgs $eventArgs)
+    {
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 }

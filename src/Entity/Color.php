@@ -6,8 +6,14 @@ use App\Repository\ColorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\Event\PreUpdateEventArgs;
 
 #[ORM\Entity(repositoryClass: ColorRepository::class)]
+#[HasLifecycleCallbacks]
 class Color
 {
     #[ORM\Id]
@@ -21,10 +27,10 @@ class Color
     #[ORM\Column(type: 'string', length: 2048)]
     private $value;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $created_at;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $updated_at;
 
     #[ORM\Column(type: 'string', length: 1024, nullable: true)]
@@ -147,5 +153,18 @@ class Color
         }
 
         return $this;
+    }
+
+    #[PrePersist]
+    public function setTimestamps(LifecycleEventArgs $eventArgs)
+    {
+        $this->created_at = new \DateTime(date('Y-m-d H:i:s'));
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    #[PreUpdate]
+    public function updateTimestamps(PreUpdateEventArgs $eventArgs)
+    {
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 }
