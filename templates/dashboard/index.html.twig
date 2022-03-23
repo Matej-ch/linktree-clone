@@ -3,22 +3,35 @@
 {% block title %}Hello DashboardController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="example-wrapper">
-    <h1>Hello  you are logged in! ✅</h1>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <p class="text-red-800 font-bold text-xl">You are cool admin</p>
-    {% endif %}
+    <div class="example-wrapper">
+        <h1>Hello you are logged in! ✅</h1>
 
-    {% if is_granted('ROLE_USER') %}
-        <a href="{{ path('app_logout') }}" class="">LOGOUT</a>
+        <p>
+            <a href="{{ path('app_user_edit') }}">EDIT YOUR SETTINGS</a>
+        </p>
 
-        <a href="{{ path('app_2fa_enable') }}">Enable 2fa</a>
-    {% endif %}
-</div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <p class="text-red-800 font-bold text-xl">You are cool admin</p>
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_logout') }}" class="">LOGOUT</a>
+
+            <a href="{{ path('app_2fa_enable') }}">Enable 2fa</a>
+        {% endif %}
+    </div>
 {% endblock %}
