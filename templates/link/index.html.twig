@@ -41,6 +41,9 @@
                                href="{{ path('app_link_edit', {'id': link.id}) }}">
                                 <span class="text-sm font-medium leading-none text-white">edit</span>
                             </a>
+
+                            {{ include('link/_delete_form.html.twig') }}
+
                         </td>
                     </tr>
                 {% else %}

@@ -24,14 +24,18 @@ class SiteController extends AbstractController
     }
 
     #[Route('/{name}', name: 'app_user_links')]
-    public function links(User $user)
+    public function links(User $user): Response
     {
-        dd($user);
+        return $this->render('site/links.html.twig', [
+            'user' => $user
+        ]);
     }
 
     #[Route('/{name}/colors', name: 'app_user_colors')]
-    public function colors(User $user)
+    public function colors(User $user): Response
     {
-
+        return $this->render('site/colors.html.twig', [
+            'user' => $user
+        ]);
     }
 }
