@@ -24,7 +24,7 @@ class ColorVisit
 
     #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'colorVisits')]
     #[ORM\JoinColumn(nullable: false)]
-    private $color_id;
+    private $color;
 
     public function getId(): ?int
     {
@@ -67,14 +67,14 @@ class ColorVisit
         return $this;
     }
 
-    public function getColorId(): ?Color
+    public function getColor(): ?Color
     {
-        return $this->color_id;
+        return $this->color;
     }
 
-    public function setColorId(?Color $color_id): self
+    public function setColor(?Color $color): self
     {
-        $this->color_id = $color_id;
+        $this->color = $color;
 
         return $this;
     }

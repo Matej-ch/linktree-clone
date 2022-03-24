@@ -40,7 +40,7 @@ class Color
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'color_id', targetEntity: ColorVisit::class)]
+    #[ORM\OneToMany(mappedBy: 'color', targetEntity: ColorVisit::class)]
     private $colorVisits;
 
     public function __construct()
@@ -137,7 +137,7 @@ class Color
     {
         if (!$this->colorVisits->contains($colorVisit)) {
             $this->colorVisits[] = $colorVisit;
-            $colorVisit->setColorId($this);
+            $colorVisit->setColor($this);
         }
 
         return $this;
@@ -147,8 +147,8 @@ class Color
     {
         if ($this->colorVisits->removeElement($colorVisit)) {
             // set the owning side to null (unless already changed)
-            if ($colorVisit->getColorId() === $this) {
-                $colorVisit->setColorId(null);
+            if ($colorVisit->getColor() === $this) {
+                $colorVisit->setColor(null);
             }
         }
 

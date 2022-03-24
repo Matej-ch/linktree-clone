@@ -37,7 +37,8 @@ class Link
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'link_id', targetEntity: LinkVisit::class)]
+    #[ORM\OneToMany(mappedBy: 'link', targetEntity: LinkVisit::class)]
+    #[ORM\OrderBy(["created_at" => "DESC"])]
     private $linkVisits;
 
     public function __construct()
@@ -118,11 +119,16 @@ class Link
         return $this->linkVisits;
     }
 
+    public function getLatestVisit()
+    {
+        return $this->getLinkVisits()->first();
+    }
+
     public function addLinkVisit(LinkVisit $linkVisit): self
     {
         if (!$this->linkVisits->contains($linkVisit)) {
             $this->linkVisits[] = $linkVisit;
-            $linkVisit->setLinkId($this);
+            $linkVisit->setLink($this);
         }
 
         return $this;
@@ -132,8 +138,8 @@ class Link
     {
         if ($this->linkVisits->removeElement($linkVisit)) {
             // set the owning side to null (unless already changed)
-            if ($linkVisit->getLinkId() === $this) {
-                $linkVisit->setLinkId(null);
+            if ($linkVisit->getLink() === $this) {
+                $linkVisit->setLink(null);
             }
         }
 

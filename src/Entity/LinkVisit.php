@@ -24,7 +24,7 @@ class LinkVisit
 
     #[ORM\ManyToOne(targetEntity: Link::class, inversedBy: 'linkVisits')]
     #[ORM\JoinColumn(nullable: false)]
-    private $link_id;
+    private $link;
 
     public function getId(): ?int
     {
@@ -67,14 +67,14 @@ class LinkVisit
         return $this;
     }
 
-    public function getLinkId(): ?Link
+    public function getLink(): ?Link
     {
-        return $this->link_id;
+        return $this->link;
     }
 
-    public function setLinkId(?Link $link_id): self
+    public function setLink(?Link $link): self
     {
-        $this->link_id = $link_id;
+        $this->link = $link;
 
         return $this;
     }
