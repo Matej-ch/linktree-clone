@@ -4,8 +4,14 @@ namespace App\Entity;
 
 use App\Repository\LinkVisitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Persistence\Event\PreUpdateEventArgs;
 
 #[ORM\Entity(repositoryClass: LinkVisitRepository::class)]
+#[HasLifecycleCallbacks]
 class LinkVisit
 {
     #[ORM\Id]
@@ -77,5 +83,18 @@ class LinkVisit
         $this->link = $link;
 
         return $this;
+    }
+
+    #[PrePersist]
+    public function setTimestamps(LifecycleEventArgs $eventArgs)
+    {
+        $this->created_at = new \DateTime(date('Y-m-d H:i:s'));
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    #[PreUpdate]
+    public function updateTimestamps(PreUpdateEventArgs $eventArgs)
+    {
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 }

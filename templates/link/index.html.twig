@@ -27,7 +27,7 @@
                 <tbody>
 
                 {% for link in links %}
-                    <tr class="focus:outline-none h-16 border border-gray-100 rounded">
+                    <tr class="focus:outline-none h-16 border border-gray-100 rounded text-center">
                         <td>{{ link.name }}</td>
                         <td><a href="{{ link.link }}">{{ link.link }}</a></td>
                         <td>{{ link.linkVisits|length }}</td>
@@ -48,7 +48,7 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="5">no records found</td>
+                        <td colspan="5">No links created yet.</td>
                     </tr>
                 {% endfor %}
                 </tbody>

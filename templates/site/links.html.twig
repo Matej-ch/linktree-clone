@@ -8,7 +8,9 @@
 
         {% for link in user.links %}
             <div class="link">
-                <a href="{{ link.link }}" class="text-center rounded p-4 mb-4 text-base block" target="_blank"
+                <a href="{{ link.link }}" class="text-center rounded p-4 mb-4 text-base block js-user-link"
+                   data-link-id="{{ link.id }}"
+                   target="_blank"
                    rel="nofollow"
                    style="border: 2px solid {{ user.textColor|default('#000') }};color: {{ user.textColor|default('#000') }}">
                     {{ link.name }}
@@ -17,4 +19,9 @@
         {% endfor %}
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('links') }}
 {% endblock %}
