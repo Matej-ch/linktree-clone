@@ -1,41 +1,62 @@
 {% extends 'base.html.twig' %}
 {% block title %}Log In!{% endblock %}
 {% block body %}
-    <main class="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
 
-        <form method="post" class="flex w-[30rem] flex-col space-y-10">
-            <div class="text-center text-4xl font-medium">Please sign in</div>
+    <div class="relative mx-auto flex w-full items-center justify-center font-sans flex-grow bg-blue-dark-900">
+        <div class="relative sm:max-w-sm w-full">
+            <div class="card bg-pink-dark shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
+            <div class="card bg-red-400 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div>
+            <div class="relative w-full rounded-3xl px-6 py-4 bg-blue-dark-700 shadow-md">
+                <label for="" class="block mt-3 text-xl text-slate-custom text-center font-semibold">
+                    LOG IN!
+                </label>
+                <form method="post" class="mt-10">
 
-            {% if error %}
-                <div class="text-red-900 bg-red-300 p-4 font-bold border-red-800 rounded-sm">{{ error.messageKey|trans(error.messageData,'security') }}</div>
-            {% endif %}
+                    {% if error %}
+                        <div class="text-red-900 bg-red-400 p-4 font-bold border-red-800 rounded-sm">
+                            This is error message
+                        </div>
+                    {% endif %}
 
-            <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
-                <label for="inputEmail">Email</label>
-                <input
-                        value="{{ last_username }}"
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        id="inputEmail"
-                        class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none" required autofocus/>
+                    <div class="mt-7">
+                        <label for="inputEmail" class="text-slate-custom">Email</label>
+                        <input
+                                value="{{ last_username }}"
+                                name="email"
+                                type="email"
+                                id="inputEmail"
+                                placeholder="Enter your email"
+                                class="mt-1 block w-full border-none bg-slate-100 h-11 rounded shadow-lg hover:bg-blue-100 focus:bg-blue-100 placeholder:italic focus:ring-0 px-2">
+                    </div>
+
+                    <div class="mt-7">
+                        <label for="inputPassword" class="text-slate-custom">Password</label>
+                        <input type="password"
+                               name="password"
+                               id="inputPassword"
+                               placeholder="Enter your password"
+                               class="mt-1 block w-full border-none bg-slate-100 h-11 rounded shadow-lg hover:bg-blue-100 focus:bg-blue-100 placeholder:italic focus:ring-0 px-2">
+                    </div>
+
+                    <div class="mt-7">
+                        <button type="submit"
+                                class="bg-pink-dark w-full py-3 rounded text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105 font-bold">
+                            LOG IN
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-            <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
-                <label for="inputPassword">Email</label>
-                <input type="password"
-                       name="password"
-                       id="inputPassword"
-                       placeholder="Password"
-                       class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none" required/>
-            </div>
-
-            <button class="transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400" type="submit">
-                LOG IN
-            </button>
-        </form>
-    </main>
+    <footer class="flex-shrink-0 flex gap-4 bg-blue-dark-700 p-8 justify-center">
+        <div class="text-slate-500">Don't have an account yet?</div>
+        <div>
+            <a href="{{ path('app_register') }}"
+               class="bg-pink-dark w-full p-3 rounded text-white shadow-xl hover:shadow-inner focus:outline-none font-bold">
+                Sign up
+            </a>
+        </div>
+    </footer>
 
 {% endblock %}

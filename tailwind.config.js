@@ -5,7 +5,14 @@ module.exports = {
         './assets/**/*.scss'
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'pink-dark': '#F03B7A',
+                'blue-dark-900': '#14163E',
+                'blue-dark-700': '#242870',
+                'slate-custom': '#FAFAFB'
+            }
+        },
     },
     plugins: [
         require("@tailwindcss/forms")({
