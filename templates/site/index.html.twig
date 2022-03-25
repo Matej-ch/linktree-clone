@@ -6,11 +6,11 @@
 
     <header class="flex flex-row-reverse w-full py-4 px-8 gap-4">
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('app_dashboard') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
-                Dashboard
-            </a>
             <a href="{{ path('app_logout') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
                 Logout
+            </a>
+            <a href="{{ path('app_dashboard') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
+                Dashboard
             </a>
         {% else %}
             <a href="{{ path('app_login') }}"
