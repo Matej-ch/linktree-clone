@@ -18,41 +18,73 @@
         </div>
 
         <div class="mt-7 overflow-x-auto">
-            <table class="w-full whitespace-nowrap">
-                <thead>
-                <tr class="focus:outline-none h-16 border border-slate-100 rounded">
-                    <th>Name</th>
-                    <th>Link</th>
-                    <th>Visits</th>
-                    <th>Last visit</th>
-                    <th>actions</th>
+
+            <table class="table-links text-slate-400 border-separate space-y-6 text-sm w-full">
+                <thead class="bg-slate-500 text-slate-300">
+                <tr class="bg-slate-300 text-slate-600 uppercase text-sm leading-normal">
+                    <th class="p-3">Name</th>
+                    <th class="p-3 text-left">Link</th>
+                    <th class="p-3 text-left">Visits</th>
+                    <th class="p-3 text-left">Last visit</th>
+                    <th class="p-3 text-left">actions</th>
                 </tr>
                 </thead>
                 <tbody>
-
                 {% for link in links %}
-                    <tr class="focus:outline-none h-16 border border-slate-100 rounded text-center">
-                        <td>{{ link.name }}</td>
-                        <td><a href="{{ link.link }}">{{ link.link }}</a></td>
-                        <td>{{ link.linkVisits|length }}</td>
-                        <td>{{ link.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</td>
-                        <td>
-                            <a class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
+                    <tr class="text-slate-500 hover:bg-gray-100 border-b border-slate-300 {{ loop.index is divisible by 2 ? '' : 'bg-slate-100' }}">
+                        <td class="p-3 text-center font-bold text-xl">{{ link.name }}</td>
+                        <td class="p-3"><a href="{{ link.link }}">{{ link.link }}</a></td>
+                        <td class="p-3">{{ link.linkVisits|length }}</td>
+                        <td class="p-3">{{ link.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</td>
+                        <td class="p-3">
+
+                            <a class="inline-block mr-4"
                                href="{{ path('app_link_show', {'id': link.id}) }}">
-                                <span class="text-sm font-medium leading-none text-white">show</span>
-                            </a>
-                            <a class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
-                               href="{{ path('app_link_edit', {'id': link.id}) }}">
-                                <span class="text-sm font-medium leading-none text-white">edit</span>
+                                <svg width="28"
+                                     height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                                    <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                                    <line x1="16" y1="5" x2="19" y2="8"/>
+                                </svg>
                             </a>
 
-                            {{ include('link/_delete_form.html.twig') }}
+                            <a class="inline-block mr-4"
+                               href="{{ path('app_link_edit', {'id': link.id}) }}">
+                                <svg width="28"
+                                     height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <circle cx="12" cy="12" r="2"/>
+                                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"/>
+                                </svg>
+                            </a>
+
+                            <form class="inline-block" method="post"
+                                  action="{{ path('app_link_delete', {'id': link.id}) }}"
+                                  onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ link.id) }}">
+                                <button>
+                                    <svg
+                                            width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5"
+                                            stroke="#2c3e50"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <line x1="4" y1="7" x2="20" y2="7"/>
+                                        <line x1="10" y1="11" x2="10" y2="17"/>
+                                        <line x1="14" y1="11" x2="14" y2="17"/>
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/>
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/>
+                                    </svg>
+                                </button>
+                            </form>
 
                         </td>
                     </tr>
                 {% else %}
-                    <tr>
-                        <td colspan="5">No links created yet.</td>
+                    <tr class="bg-slate-800">
+                        <td class="p-3" colspan="5">No links created yet.</td>
                     </tr>
                 {% endfor %}
                 </tbody>

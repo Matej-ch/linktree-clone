@@ -41,6 +41,7 @@ class Color
     private $user;
 
     #[ORM\OneToMany(mappedBy: 'color', targetEntity: ColorVisit::class)]
+    #[ORM\OrderBy(["created_at" => "DESC"])]
     private $colorVisits;
 
     public function __construct()
@@ -131,6 +132,11 @@ class Color
     public function getColorVisits(): Collection
     {
         return $this->colorVisits;
+    }
+
+    public function getLatestVisit()
+    {
+        return $this->getColorVisits()->first();
     }
 
     public function addColorVisit(ColorVisit $colorVisit): self
