@@ -3,21 +3,21 @@
 {% block title %} {{ user.name }} Links{% endblock %}
 
 {% block body %}
-
-    <div style="background-color: {{ user.backgroundColor|default('#fff') }}">
-
-        {% for link in user.links %}
-            <div class="link">
-                <a href="{{ link.link }}" class="text-center rounded p-4 mb-4 text-base block js-user-link"
-                   data-link-id="{{ link.id }}"
-                   target="_blank"
-                   rel="nofollow"
-                   style="border: 2px solid {{ user.textColor|default('#000') }};color: {{ user.textColor|default('#000') }}">
-                    {{ link.name }}
-                </a>
-            </div>
-        {% endfor %}
-
+    <div class="relative mx-auto flex w-full items-center justify-center font-sans flex-grow"
+         style="background-color: {{ user.backgroundColor|default('#fff') }}">
+        <div class="relative sm:max-w-sm w-full px-6 md:px-0">
+            {% for link in user.links %}
+                <div class="link">
+                    <a href="{{ link.link }}" class="text-center rounded p-4 mb-4 text-base block js-user-link"
+                       data-link-id="{{ link.id }}"
+                       target="_blank"
+                       rel="nofollow"
+                       style="border: 2px solid {{ user.textColor|default('#000') }};color: {{ user.textColor|default('#000') }}">
+                        {{ link.name }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
