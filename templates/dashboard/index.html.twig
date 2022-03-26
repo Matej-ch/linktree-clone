@@ -4,8 +4,6 @@
 
 {% block body %}
 
-    {{ include('fragments/_admin_header.html.twig') }}
-
     <div class="bg-white py-4 md:py-4 px-4 md:px-4 xl:px-4">
         <div class="sm:flex items-center justify-between">
             <a class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
@@ -56,11 +54,6 @@
             </table>
         </div>
     </div>
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <p class="text-red-800 font-bold text-xl">You are cool admin</p>
-        {% endif %}
-
         {% if is_granted('ROLE_USER') %}
             <a href="{{ path('app_2fa_enable') }}">Enable 2fa</a>
         {% endif %}

@@ -15,14 +15,20 @@
 </head>
 <body class="w-full h-full">
 
-{% for flash in app.flashes('success') %}
-    <div class="alert alert-success">{{ flash }}</div>
-{% endfor %}
-{% for flash in app.flashes('danger') %}
-    <div class="alert alert-danger">{{ flash }}</div>
-{% endfor %}
-
 <main class="min-h-full flex flex-col items-stretch">
+
+    {% for flash in app.flashes('success') %}
+        <div class="alert alert-success">{{ flash }}</div>
+    {% endfor %}
+    {% for flash in app.flashes('danger') %}
+        <div class="alert alert-danger">{{ flash }}</div>
+    {% endfor %}
+
+
+    {% block header %}
+        {{ include('fragments/_admin_header.html.twig') }}
+    {% endblock %}
+
     {% block body %}{% endblock %}
 </main>
 

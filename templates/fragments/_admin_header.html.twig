@@ -3,11 +3,12 @@
         <a href="{{ path('app_logout') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
             Logout
         </a>
-        <a href="{{ path('app_user_links', {name: user.name}) }}"
+        <a href="{{ path('app_user_links', {name: app.user.name}) }}"
            class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
             Links
         </a>
-        <a href="{{ path('app_user_edit') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">Settings</a>
+        <a href="{{ path('app_user_edit') }}"
+           class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">Settings</a>
         <a href="{{ path('app_dashboard') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
             Dashboard
         </a>
