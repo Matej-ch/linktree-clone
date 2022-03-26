@@ -4,24 +4,26 @@
 
 {% block body %}
 
-    <header class="flex flex-row-reverse w-full py-4 px-8 gap-4">
+    <header class="flex flex-row-reverse justify-center md:justify-start w-full py-1 md:py-4 px-2 md:px-8 gap-1 md:gap-4">
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('app_logout') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
+            <a href="{{ path('app_logout') }}" class="font-bold text-xl p-2 md:p-4 text-slate-600 hover:text-blue-600">
                 Logout
             </a>
             <a href="{{ path('app_user_links', {name: user.name}) }}"
-               class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
+               class="font-bold text-xl p-2 md:p-4 text-slate-600 hover:text-blue-600">
                 Links
             </a>
-            <a href="{{ path('app_dashboard') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
+            <a href="{{ path('app_dashboard') }}"
+               class="font-bold text-xl p-2 md:p-4 text-slate-600 hover:text-blue-600">
                 Dashboard
             </a>
         {% else %}
             <a href="{{ path('app_login') }}"
-               class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
+               class="font-bold text-xl  p-2 md:p-4 text-slate-600 hover:text-blue-600">
                 Login
             </a>
-            <a href="{{ path('app_register') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
+            <a href="{{ path('app_register') }}"
+               class="font-bold text-xl p-2 md:p-4 text-slate-600 hover:text-blue-600">
                 Register
             </a>
         {% endif %}
@@ -29,19 +31,17 @@
 
     <div class="relative mx-auto flex w-full justify-center font-sans flex-grow">
 
-        <div class="w-full px-64 py-40">
-            <div class="text-6xl font-bold prose">Welcome to linktree clone</div>
-            <div class="text-2xl prose">Now with ability to add and show your favourite colors</div>
+        <div class="w-full px-12 py-10 md:px-64 md:py-40">
+            <div class="text-4xl md:text-6xl font-bold prose">Welcome to linktree clone</div>
+            <div class="text-base md:text-2xl prose">Now with ability to add and show your favourite colors</div>
         </div>
 
         <div class="absolute bottom-0 right-0 -z-20">
-            <div class="border-t-transparent border-r-transparent border-b-blue-500 border-l-transparent"
-                 style="width: 0;height: 0;border-style: solid;border-width: 0 0 500px 500px;"></div>
+            <div class="triangle"></div>
         </div>
 
         <div class="absolute bottom-20 right-2 -z-30">
-            <div class="bg-orange-400"
-                 style="width: 30rem;height: 11rem;border-radius: 10rem;"></div>
+            <div class="pill"></div>
         </div>
 
     </div>

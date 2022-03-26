@@ -2,7 +2,7 @@
 {% block title %}Log In!{% endblock %}
 {% block body %}
 
-    <div class="relative mx-auto flex w-full items-center justify-center font-sans flex-grow bg-blue-dark-900">
+    <div class="relative mx-auto flex w-full items-center justify-center font-sans flex-grow bg-blue-dark-900 px-6 md:px-0">
         <div class="relative sm:max-w-sm w-full">
             <div class="card bg-pink-dark shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
             <div class="card bg-red-400 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div>
@@ -51,9 +51,9 @@
         </div>
     </div>
 
-    <footer class="flex-shrink-0 flex gap-4 bg-blue-dark-700 p-8 justify-center">
-        <div class="text-slate-500">Don't have an account yet?</div>
-        <div>
+    <footer class="flex-shrink-0 flex flex-col md:flex-row gap-4 bg-blue-dark-700 p-4 md:p-8 justify-center">
+        <div class="text-slate-500 text-center">Don't have an account yet?</div>
+        <div class="text-center">
             <a href="{{ path('app_register') }}"
                class="bg-pink-dark w-full p-3 rounded text-white shadow-xl hover:shadow-inner focus:outline-none font-bold">
                 Sign up
