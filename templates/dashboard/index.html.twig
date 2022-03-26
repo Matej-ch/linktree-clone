@@ -5,17 +5,22 @@
 {% block body %}
 
     <div class="bg-white py-4 md:py-4 px-4 md:px-4 xl:px-4">
-        <div class="sm:flex items-center justify-between">
-            <a class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
+        <div class="sm:flex items-center gap-4">
+            <a class="btn-main"
                href="{{ path('app_link_new') }}">
-                <span class="text-sm font-medium leading-none text-white">Create new</span>
+                <span class="font-bold text-white">New link</span>
+            </a>
+
+            <a class="btn-main"
+               href="{{ path('app_color_new') }}">
+                <span class="font-bold text-white">New color</span>
             </a>
         </div>
 
         <div class="mt-7 overflow-x-auto">
             <table class="w-full whitespace-nowrap">
                 <thead>
-                <tr class="focus:outline-none h-16 border border-gray-100 rounded">
+                <tr class="focus:outline-none h-16 border border-slate-100 rounded">
                     <th>Name</th>
                     <th>Link</th>
                     <th>Visits</th>
@@ -26,7 +31,7 @@
                 <tbody>
 
                 {% for link in links %}
-                    <tr class="focus:outline-none h-16 border border-gray-100 rounded text-center">
+                    <tr class="focus:outline-none h-16 border border-slate-100 rounded text-center">
                         <td>{{ link.name }}</td>
                         <td><a href="{{ link.link }}">{{ link.link }}</a></td>
                         <td>{{ link.linkVisits|length }}</td>

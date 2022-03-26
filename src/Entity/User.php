@@ -28,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, unique: true, nullable: true)]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
