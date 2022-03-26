@@ -37,7 +37,7 @@ class ColorController extends AbstractController
             $colorRepository->add($color);
             return $this->redirectToRoute('app_color_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->renderForm('color/new.html.twig', [
             'color' => $color,
             'form' => $form,

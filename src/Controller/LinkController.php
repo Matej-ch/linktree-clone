@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Link;
-use App\Entity\User;
 use App\Form\LinkType;
 use App\Repository\LinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

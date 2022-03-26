@@ -36,7 +36,7 @@ class Color
     #[ORM\Column(type: 'string', length: 1024, nullable: true)]
     private $text;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'colors')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'colors')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
@@ -78,12 +78,12 @@ class Color
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
