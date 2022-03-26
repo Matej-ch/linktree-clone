@@ -9,8 +9,35 @@
         </a>
         <a href="{{ path('app_user_edit') }}"
            class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">Settings</a>
-        <a href="{{ path('app_dashboard') }}" class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
-            Dashboard
-        </a>
+
+        <div class="group inline-block">
+            <button class="outline-none focus:outline-none bg-white flex items-center"
+                    style="min-width: 8rem">
+                <span class="p-4 font-bold flex-1 text-slate-600 text-xl">Dashboard</span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4 transform group-hover:-rotate-180 transition duration-150 ease-in-out"
+                         width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </span>
+            </button>
+            <ul class="bg-white px-3 transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top"
+                style="min-width: 8rem">
+                <li class="rounded-sm px-4 py-1 hover:bg-slate-100">
+                    <a class=" text-slate-600 hover:text-blue-600 text-xl" href="{{ path('app_dashboard') }}">
+                        Links
+                    </a>
+                </li>
+                <li class="rounded-sm px-4 py-1 hover:bg-slate-100">
+                    <a class=" text-slate-600 hover:text-blue-600 text-xl" href="{{ path('app_color_index') }}">
+                        Colors
+                    </a>
+                </li>
+            </ul>
+        </div>
+
     {% endif %}
 </header>
