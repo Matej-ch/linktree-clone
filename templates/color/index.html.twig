@@ -1,43 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Color index{% endblock %}
+{% block title %}Dashboard Colors{% endblock %}
 
 {% block body %}
-    <h1>Color index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Value</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Text</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for color in colors %}
-            <tr>
-                <td>{{ color.id }}</td>
-                <td>{{ color.name }}</td>
-                <td>{{ color.value }}</td>
-                <td>{{ color.createdAt ? color.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ color.updatedAt ? color.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ color.text }}</td>
-                <td>
-                    <a href="{{ path('app_color_show', {'id': color.id}) }}">show</a>
-                    <a href="{{ path('app_color_edit', {'id': color.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="bg-white py-4 md:py-4 px-4 md:px-4 xl:px-4">
+        <div class="sm:flex items-center gap-4">
+            <a class="btn-main"
+               href="{{ path('app_link_new') }}">
+                <span class="font-bold text-white">New link</span>
+            </a>
 
-    <a href="{{ path('app_color_new') }}">Create new</a>
+            <a class="btn-main"
+               href="{{ path('app_color_new') }}">
+                <span class="font-bold text-white">New color</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-7 overflow-x-auto">
+        <table class="table-links text-slate-400 border-separate space-y-6 text-sm w-full">
+            <thead class="bg-slate-500 text-slate-300">
+            <tr class="bg-slate-300 text-slate-600 uppercase text-sm leading-normal">
+                <th class="p-3">Name</th>
+                <th class="p-3 text-left">Color</th>
+                <th class="p-3 text-left">Text</th>
+                <th class="p-3 text-left">Visits</th>
+                <th class="p-3 text-left">Last visit</th>
+                <th class="p-3 text-left">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for color in colors %}
+                <tr class="text-slate-500 hover:bg-gray-100 border-b border-slate-300 {{ loop.index is divisible by 2 ? '' : 'bg-slate-100' }}">
+                    <td class="p-3 text-center font-bold text-xl">{{ color.name }}</td>
+                    <td class="p-3" style="background-color: {{ color.value }}">{{ color.value }}</td>
+                    <td class="p-3">{{ color.text }}</td>
+                    <td class="p-3">{{ color.colorVisits|length }}</td>
+                    <td class="p-3">{{ color.latestVisit ? color.latestVisit.createdAt|ago : 'Not yet visited' }}</td>
+                    <td class="p-3">
+
+                        <a class="inline-block mr-4"
+                           href="{{ path('app_color_edit', {'id': color.id}) }}">
+                            <svg width="28"
+                                 height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                                <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                                <line x1="16" y1="5" x2="19" y2="8"/>
+                            </svg>
+                        </a>
+
+                        <a class="inline-block mr-4"
+                           href="{{ path('app_color_show', {'id': color.id}) }}">
+                            <svg width="28"
+                                 height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <circle cx="12" cy="12" r="2"/>
+                                <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"/>
+                            </svg>
+                        </a>
+
+                        <form class="inline-block" method="post"
+                              action="{{ path('app_color_delete', {'id': color.id}) }}"
+                              onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ color.id) }}">
+                            <button>
+                                <svg
+                                        width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="#2c3e50"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <line x1="4" y1="7" x2="20" y2="7"/>
+                                    <line x1="10" y1="11" x2="10" y2="17"/>
+                                    <line x1="14" y1="11" x2="14" y2="17"/>
+                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/>
+                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="bg-slate-800">
+                    <td class="p-3" colspan="6">No colors created yet.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

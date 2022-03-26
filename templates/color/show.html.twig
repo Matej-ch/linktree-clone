@@ -1,42 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Color{% endblock %}
+{% block title %}Color {{ color.name }}{% endblock %}
 
 {% block body %}
-    <h1>Color</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ color.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ color.name }}</td>
-            </tr>
-            <tr>
-                <th>Value</th>
-                <td>{{ color.value }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ color.createdAt ? color.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ color.updatedAt ? color.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ color.text }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="w-full">
+        <div class="bg-gradient-to-b from-blue-700 to-blue-500 h-96"></div>
+        <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12 mt-12">
+            <div class="bg-white w-full shadow rounded p-8 sm:p-12 -mt-72">
+                <p class="text-3xl font-bold leading-7 text-center">Color details</p>
 
-    <a href="{{ path('app_color_index') }}">back to list</a>
+                <div class="md:flex items-center mt-12 gap-4 flex-wrap">
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Name</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.name }}</div>
+                    </div>
 
-    <a href="{{ path('app_color_edit', {'id': color.id}) }}">edit</a>
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Text</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.text }}</div>
+                    </div>
 
-    {{ include('color/_delete_form.html.twig') }}
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Value</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2"
+                             style="background-color: {{ color.value }}">{{ color.value }}</div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Created at</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.createdAt|ago }}</div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Updated at</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.updatedAt|ago }}</div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Visits</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.colorVisits|length }}</div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <span class="font-semibold leading-none block px-2">Last visit</span>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center w-full gap-8">
+
+                    <a class="btn-main" href="{{ path('app_color_edit', {'id': color.id}) }}">Edit</a>
+
+                    <a class="btn-default" href="{{ path('app_dashboard') }}">Back to list</a>
+
+                    <div class="ml-auto">
+                        {{ include('color/_delete_form.html.twig') }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

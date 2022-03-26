@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Link{% endblock %}
+{% block title %}Link {{ link.name }}{% endblock %}
 
 {% block body %}
 
@@ -32,7 +32,6 @@
                         <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.updatedAt|ago }}</div>
                     </div>
 
-
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Visits</span>
                         <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.linkVisits|length }}</div>
@@ -58,10 +57,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 {% endblock %}

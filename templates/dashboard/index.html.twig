@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard links{% endblock %}
 
 {% block body %}
 
@@ -26,7 +26,7 @@
                     <th class="p-3 text-left">Link</th>
                     <th class="p-3 text-left">Visits</th>
                     <th class="p-3 text-left">Last visit</th>
-                    <th class="p-3 text-left">actions</th>
+                    <th class="p-3 text-left">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,7 @@
                         <td class="p-3">
 
                             <a class="inline-block mr-4"
-                               href="{{ path('app_link_show', {'id': link.id}) }}">
+                               href="{{ path('app_link_edit', {'id': link.id}) }}">
                                 <svg width="28"
                                      height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
                                      stroke-linecap="round" stroke-linejoin="round">
@@ -51,7 +51,7 @@
                             </a>
 
                             <a class="inline-block mr-4"
-                               href="{{ path('app_link_edit', {'id': link.id}) }}">
+                               href="{{ path('app_link_show', {'id': link.id}) }}">
                                 <svg width="28"
                                      height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
                                      stroke-linecap="round" stroke-linejoin="round">
