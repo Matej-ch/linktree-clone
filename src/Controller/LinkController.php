@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Link;
-use App\Entity\User;
 use App\Form\LinkType;
 use App\Repository\LinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,16 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/dashboard/links')]
 class LinkController extends AbstractController
 {
-    #[Route('/', name: 'app_link_index', methods: ['GET'])]
-    public function index(): Response
-    {
-        /** @var User $user */
-        $user = $this->getUser();
-
-        return $this->render('link/index.html.twig', [
-            'links' => $user->getLinks(),
-        ]);
-    }
 
     #[Route('/new', name: 'app_link_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LinkRepository $linkRepository): Response
@@ -35,7 +24,7 @@ class LinkController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $link->setUser($this->getUser());
             $linkRepository->add($link);
-            return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('link/new.html.twig', [
@@ -64,7 +53,7 @@ class LinkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $linkRepository->add($link);
-            return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('link/edit.html.twig', [
@@ -82,6 +71,6 @@ class LinkController extends AbstractController
             $linkRepository->remove($link);
         }
 
-        return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
     }
 }
