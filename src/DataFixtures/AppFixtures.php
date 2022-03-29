@@ -18,13 +18,13 @@ class AppFixtures extends Fixture
 
         UserFactory::createMany(10);
 
-        $links = LinkFactory::createMany(50, static function () {
+        LinkFactory::createMany(50, static function () {
             return [
                 'user' => UserFactory::random()
             ];
         });
 
-        $colors = ColorFactory::createMany(50, static function () {
+        ColorFactory::createMany(50, static function () {
             return [
                 'user' => UserFactory::random()
             ];
