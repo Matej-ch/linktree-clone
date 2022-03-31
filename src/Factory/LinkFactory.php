@@ -46,9 +46,7 @@ final class LinkFactory extends ModelFactory
 
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Links $links): void {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string
