@@ -26,19 +26,21 @@ export default class extends Controller {
         this.toggleGradientOnTarget.classList.add('hidden');
         this.toggleGradientOffTarget.classList.remove('hidden');
 
-        const colorpicker = ColorPickerUI.create({
+        console.log(this.colorInput);
+        const colorpicker = ColorPickerUI.createGradientPicker({
             color: this.colorInput, // init color code
-            position: 'inline',   // default show
+            position: 'inline',
             container: this.gradientTarget,
-            type: 'sketch', // or 'sketch',  default type is 'chromedevtool'
+            gradient: `linear-gradient(to right, white 0%, ${this.colorInput} 100%)`,
+            //type: 'sketch', // or 'sketch',  default type is 'chromedevtool'
             onHide: () => {
                 console.log('hide');
             },
-            onChange: color => {
-                console.log(color);
+            onChange: gradientString => {
+                console.log(gradientString);
             },
-            onLastUpdate: color => {
-                console.log(color);
+            onLastUpdate: gradientString => {
+                console.log(gradientString);
             }
         })
     }
