@@ -125,6 +125,15 @@
 
             </div>
         </div>
+
+        <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12 mt-12">
+            {% if is_granted('ROLE_USER') %}
+                <a class="mt-9 font-semibold leading-none text-white py-4 px-10 bg-orange-500 rounded hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:ring-orange-700 focus:outline-none"
+                   href="{{ path('app_2fa_enable') }}">
+                    Enable 2fa
+                </a>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}
