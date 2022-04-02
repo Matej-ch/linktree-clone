@@ -12,11 +12,22 @@ export default class extends Controller {
     static targets = ["colorInput", "picker", "toggleGradientOn", "toggleGradientOff"];
 
     connect() {
+
+        let color;
+        if (this.colorInput.startsWith('#')) {
+            color = this.colorInput;
+        } else {
+            color = this.colorInput.substring(
+                this.colorInput.indexOf("#"),
+                this.colorInput.lastIndexOf(" ")
+            );
+        }
+
         this.colorPicker = ColorPickerUI.create({
             type: "sketch",
             position: "inline",
             container: this.pickerTarget,
-            color: this.colorInput,
+            color: color,
             onChange: c => {
                 this.colorInput = c;
             },
@@ -41,11 +52,21 @@ export default class extends Controller {
         this.pickerTarget.innerHTML = '';
         this.colorPicker.destroy();
 
+        let color;
+        if (this.colorInput.startsWith('#')) {
+            color = this.colorInput;
+        } else {
+            color = this.colorInput.substring(
+                this.colorInput.indexOf("#"),
+                this.colorInput.lastIndexOf(" ")
+            );
+        }
+
         this.colorPicker = ColorPickerUI.create({
             type: "sketch",
             position: "inline",
             container: this.pickerTarget,
-            color: this.colorInput,
+            color: color,
             onChange: c => {
                 this.colorInput = c;
             },
