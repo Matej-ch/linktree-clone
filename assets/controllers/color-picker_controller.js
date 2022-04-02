@@ -18,16 +18,20 @@ export default class extends Controller {
             container: this.pickerTarget,
             color: this.colorInput,
             onChange: c => {
-                console.log(c);
+                this.colorInput = c;
             },
             onLastUpdate: c => {
-                console.log(c);
+                this.colorInput = c;
             }
         });
     }
 
     get colorInput() {
         return this.colorInputTarget.value
+    }
+
+    set colorInput(value) {
+        this.colorInputTarget.value = value;
     }
 
     hideGradient() {
@@ -43,10 +47,10 @@ export default class extends Controller {
             container: this.pickerTarget,
             color: this.colorInput,
             onChange: c => {
-                console.log(c);
+                this.colorInput = c;
             },
             onLastUpdate: c => {
-                console.log(c);
+                this.colorInput = c;
             }
         });
     }
@@ -58,16 +62,23 @@ export default class extends Controller {
         this.pickerTarget.innerHTML = '';
         this.colorPicker.destroy();
 
+        let gradient;
+        if (this.colorInput.startsWith('#')) {
+            gradient = `linear-gradient(to right, white 0%, ${this.colorInput} 100%)`;
+        } else {
+            gradient = this.colorInput;
+        }
+
         this.colorPicker = ColorPickerUI.createGradientPicker({
             color: this.colorInput,
             position: 'inline',
             container: this.pickerTarget,
-            gradient: `linear-gradient(to right, white 0%, ${this.colorInput} 100%)`,
+            gradient: gradient,
             onChange: gradientString => {
-                console.log(gradientString);
+                this.colorInput = gradientString;
             },
             onLastUpdate: gradientString => {
-                console.log(gradientString);
+                this.colorInput = gradientString;
             }
         })
     }
