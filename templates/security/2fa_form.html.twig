@@ -7,22 +7,24 @@
     {% endif %}
 
     {# Display current two-factor provider #}
-    <p class="label"><label for="_auth_code">{{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}
-            :</label></p>
+    <p class="label font-bold text-xl text-center">
+        <label for="_auth_code">{{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}</label>
+    </p>
 
     <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post">
-        <p class="widget">
+        <p class="widget flex justify-center max-w-md mx-auto">
             <input
                     id="_auth_code"
                     type="text"
                     name="{{ authCodeParameterName }}"
                     autocomplete="one-time-code"
-                    autofocus
-            />
+                    placeholder="Enter your auth code"
+                    class="mt-1 block w-full border-none bg-slate-100 h-11 rounded shadow-lg hover:bg-blue-100 focus:bg-blue-100 placeholder:italic focus:ring-0 px-2"
+                    autofocus/>
         </p>
 
         {% if displayTrustedOption %}
-            <p class="widget">
+            <p class="widget flex justify-center max-w-md mx-auto">
                 <label for="_trusted">
                     <input id="_trusted" type="checkbox"
                            name="{{ trustedParameterName }}"/> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}
@@ -34,10 +36,18 @@
             <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
         {% endif %}
 
-        {# The logout link gives the user a way out if they can't complete two-factor authentication #}
-        <a href="{{ logoutPath }}">{{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}</a>
+        <div class="text-center flex gap-2 justify-center">
+            {# The logout link gives the user a way out if they can't complete two-factor authentication #}
+            <a class="mt-9 font-semibold leading-none text-white py-4 px-10 bg-red-500 rounded hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 focus:outline-none"
+               href="{{ logoutPath }}">
+                {{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}
+            </a>
 
-        <button type="submit" value="{{ "login"|trans({}, 'SchebTwoFactorBundle') }}"></button>
+            <button class="mt-9 font-semibold leading-none text-white py-4 px-10 bg-green-500 rounded hover:bg-green-600 focus:ring-2 focus:ring-offset-2 focus:ring-green-700 focus:outline-none"
+                    type="submit" value="{{ "login"|trans({}, 'SchebTwoFactorBundle') }}">Login
+            </button>
+        </div>
+
     </form>
 {% endblock %}
 
