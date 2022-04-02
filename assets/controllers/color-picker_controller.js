@@ -5,12 +5,14 @@ import ColorPickerUI from '@easylogic/colorpicker'
 export default class extends Controller {
     static values = {
         color: String,
-    }
+    };
 
-    static targets = ["colorInput", "gradient", "toggleGradientOn", "toggleGradientOff"]
+    colorPicker;
+
+    static targets = ["colorInput", "gradient", "toggleGradientOn", "toggleGradientOff"];
 
     connect() {
-        console.log(this.colorInput);
+
     }
 
     get colorInput() {
@@ -20,6 +22,9 @@ export default class extends Controller {
     hideGradient() {
         this.toggleGradientOffTarget.classList.add('hidden');
         this.toggleGradientOnTarget.classList.remove('hidden');
+
+        this.gradientTarget.innerHTML = '';
+        this.colorPicker.destroy();
     }
 
     showGradient() {
@@ -27,12 +32,11 @@ export default class extends Controller {
         this.toggleGradientOffTarget.classList.remove('hidden');
 
         console.log(this.colorInput);
-        const colorpicker = ColorPickerUI.createGradientPicker({
-            color: this.colorInput, // init color code
+        this.colorPicker = ColorPickerUI.createGradientPicker({
+            color: this.colorInput,
             position: 'inline',
             container: this.gradientTarget,
             gradient: `linear-gradient(to right, white 0%, ${this.colorInput} 100%)`,
-            //type: 'sketch', // or 'sketch',  default type is 'chromedevtool'
             onHide: () => {
                 console.log('hide');
             },
