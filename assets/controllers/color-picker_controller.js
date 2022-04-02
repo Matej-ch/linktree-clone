@@ -9,10 +9,21 @@ export default class extends Controller {
 
     colorPicker;
 
-    static targets = ["colorInput", "gradient", "toggleGradientOn", "toggleGradientOff"];
+    static targets = ["colorInput", "picker", "toggleGradientOn", "toggleGradientOff"];
 
     connect() {
-
+        this.colorPicker = ColorPickerUI.create({
+            type: "sketch",
+            position: "inline",
+            container: this.pickerTarget,
+            color: this.colorInput,
+            onChange: c => {
+                console.log(c);
+            },
+            onLastUpdate: c => {
+                console.log(c);
+            }
+        });
     }
 
     get colorInput() {
@@ -23,23 +34,35 @@ export default class extends Controller {
         this.toggleGradientOffTarget.classList.add('hidden');
         this.toggleGradientOnTarget.classList.remove('hidden');
 
-        this.gradientTarget.innerHTML = '';
+        this.pickerTarget.innerHTML = '';
         this.colorPicker.destroy();
+
+        this.colorPicker = ColorPickerUI.create({
+            type: "sketch",
+            position: "inline",
+            container: this.pickerTarget,
+            color: this.colorInput,
+            onChange: c => {
+                console.log(c);
+            },
+            onLastUpdate: c => {
+                console.log(c);
+            }
+        });
     }
 
     showGradient() {
         this.toggleGradientOnTarget.classList.add('hidden');
         this.toggleGradientOffTarget.classList.remove('hidden');
 
-        console.log(this.colorInput);
+        this.pickerTarget.innerHTML = '';
+        this.colorPicker.destroy();
+
         this.colorPicker = ColorPickerUI.createGradientPicker({
             color: this.colorInput,
             position: 'inline',
-            container: this.gradientTarget,
+            container: this.pickerTarget,
             gradient: `linear-gradient(to right, white 0%, ${this.colorInput} 100%)`,
-            onHide: () => {
-                console.log('hide');
-            },
             onChange: gradientString => {
                 console.log(gradientString);
             },
