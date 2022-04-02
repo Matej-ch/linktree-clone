@@ -12,29 +12,38 @@ export default class extends Controller {
     static targets = ["colorInput", "picker", "toggleGradientOn", "toggleGradientOff"];
 
     connect() {
+        if (this.colorInput.includes('gradient')) {
+            this.toggleGradientOffTarget.classList.remove('hidden');
+            this.toggleGradientOnTarget.classList.add('hidden');
 
-        let color;
-        if (this.colorInput.startsWith('#')) {
-            color = this.colorInput;
+
+            this.colorPicker = ColorPickerUI.createGradientPicker({
+                position: 'inline',
+                container: this.pickerTarget,
+                gradient: this.colorInput,
+                onChange: gradientString => {
+                    this.colorInput = gradientString;
+                },
+                onLastUpdate: gradientString => {
+                    this.colorInput = gradientString;
+                }
+            })
         } else {
-            color = this.colorInput.substring(
-                this.colorInput.indexOf("#"),
-                this.colorInput.lastIndexOf(" ")
-            );
+            this.toggleGradientOffTarget.classList.add('hidden');
+            this.toggleGradientOnTarget.classList.remove('hidden');
+            this.colorPicker = ColorPickerUI.create({
+                type: "sketch",
+                position: "inline",
+                container: this.pickerTarget,
+                color: this.colorInput,
+                onChange: c => {
+                    this.colorInput = c;
+                },
+                onLastUpdate: c => {
+                    this.colorInput = c;
+                }
+            });
         }
-
-        this.colorPicker = ColorPickerUI.create({
-            type: "sketch",
-            position: "inline",
-            container: this.pickerTarget,
-            color: color,
-            onChange: c => {
-                this.colorInput = c;
-            },
-            onLastUpdate: c => {
-                this.colorInput = c;
-            }
-        });
     }
 
     get colorInput() {
@@ -91,7 +100,6 @@ export default class extends Controller {
         }
 
         this.colorPicker = ColorPickerUI.createGradientPicker({
-            color: this.colorInput,
             position: 'inline',
             container: this.pickerTarget,
             gradient: gradient,

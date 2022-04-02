@@ -65,39 +65,42 @@
 
                         <div class="color-picker" {{ stimulus_controller('color-picker') }}>
 
-                            <span class="flex flex-row gap-2">
+                            <span class="flex flex-col">
                                 {{ form_label(form.textColor, null, {label_attr: {'class': 'font-semibold leading-none block mb-2' }}) }}
 
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="icon icon-tabler icon-tabler-shadow cursor-pointer"
-                                     data-action="click->color-picker#showGradient"
-                                     data-color-picker-target="toggleGradientOn"
-                                     width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
-                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <circle cx="12" cy="12" r="9"/>
-                                    <path d="M13 12h5"/>
-                                    <path d="M13 15h4"/>
-                                    <path d="M13 18h1"/>
-                                    <path d="M13 9h4"/>
-                                    <path d="M13 6h1"/>
-                                </svg>
+                                <span class="hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="icon icon-tabler icon-tabler-shadow cursor-pointer"
+                                         data-action="click->color-picker#showGradient"
+                                         data-color-picker-target="toggleGradientOn"
+                                         width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
+                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <circle cx="12" cy="12" r="9"/>
+                                        <path d="M13 12h5"/>
+                                        <path d="M13 15h4"/>
+                                        <path d="M13 18h1"/>
+                                        <path d="M13 9h4"/>
+                                        <path d="M13 6h1"/>
+                                    </svg>
 
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="icon icon-tabler icon-tabler-shadow-off hidden cursor-pointer"
-                                     data-action="click->color-picker#hideGradient"
-                                     data-color-picker-target="toggleGradientOff"
-                                     width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
-                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M5.634 5.638a9 9 0 0 0 12.728 12.727m1.68 -2.32a9 9 0 0 0 -12.086 -12.088"/>
-                                    <path d="M16 12h2"/>
-                                    <path d="M13 15h2"/>
-                                    <path d="M13 18h1"/>
-                                    <path d="M13 9h4"/>
-                                    <path d="M13 6h1"/>
-                                    <path d="M3 3l18 18"/>
-                                </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="icon icon-tabler icon-tabler-shadow-off hidden cursor-pointer"
+                                         data-action="click->color-picker#hideGradient"
+                                         data-color-picker-target="toggleGradientOff"
+                                         width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
+                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M5.634 5.638a9 9 0 0 0 12.728 12.727m1.68 -2.32a9 9 0 0 0 -12.086 -12.088"/>
+                                        <path d="M16 12h2"/>
+                                        <path d="M13 15h2"/>
+                                        <path d="M13 18h1"/>
+                                        <path d="M13 9h4"/>
+                                        <path d="M13 6h1"/>
+                                        <path d="M3 3l18 18"/>
+                                    </svg>
+                                </span>
+
                             </span>
 
                             {{ form_widget(form.textColor, {
