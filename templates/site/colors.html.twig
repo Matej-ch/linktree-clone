@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ user.name }} Links{% endblock %}
+{% block title %} {{ user.name }} Colors{% endblock %}
 
 {% block header %}
 {% endblock %}
 
 {% block body %}
+    <div {{ stimulus_controller('color',{colors: colors,refreshInterval:3000}) }} class="flex-grow"
+                                                                                  style="transition: all 0.75s ease;"></div>
 {% endblock %}

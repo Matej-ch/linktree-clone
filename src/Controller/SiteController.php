@@ -50,8 +50,20 @@ class SiteController extends AbstractController
     #[Route('/{name}/colors', name: 'app_user_colors')]
     public function colors(User $user): Response
     {
+        $colors = [];
+        $i = 0;
+        foreach ($user->getColors() as $color) {
+            $colors[$i]['value'] = $color->getValue();
+            $colors[$i]['id'] = $color->getId();
+            //$colors[$i]['name'] = $color->getName();
+            //$colors[$i]['text'] = $color->getText();
+
+            $i++;
+        }
+
         return $this->render('site/colors.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'colors' => $colors
         ]);
     }
 }
