@@ -14,10 +14,10 @@ class ColorType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('value', \Symfony\Component\Form\Extension\Core\Type\ColorType::class, [
+            ->add('value', TextType::class, [
                 'required' => true,
                 'empty_data' => '#ffffff',
-                'invalid_message' => 'Color must be in hexadecimal format'
+                'invalid_message' => 'Color must be set'
             ])
             ->add('text', TextType::class);
     }
