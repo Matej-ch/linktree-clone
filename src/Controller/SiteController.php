@@ -55,8 +55,8 @@ class SiteController extends AbstractController
         foreach ($user->getColors() as $color) {
             $colors[$i]['value'] = $color->getValue();
             $colors[$i]['id'] = $color->getId();
-            //$colors[$i]['name'] = $color->getName();
-            //$colors[$i]['text'] = $color->getText();
+            $colors[$i]['name'] = $color->getName();
+            $colors[$i]['text'] = $color->getText();
 
             $i++;
         }
