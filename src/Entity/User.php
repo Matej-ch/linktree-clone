@@ -54,6 +54,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(type: 'string', length: 255)]
     private string $textColor = '#000000';
 
+    #[ORM\Column(type: 'string', length: 128, nullable: true)]
+    private ?string $transitionFunction = 'ease';
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $transitionDuration = 0.75;
+
     public function __construct()
     {
         $this->links = new ArrayCollection();
@@ -273,6 +279,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setTextColor(string $textColor): self
     {
         $this->textColor = $textColor;
+
+        return $this;
+    }
+
+    public function getTransitionFunction(): ?string
+    {
+        return $this->transitionFunction;
+    }
+
+    public function setTransitionFunction(?string $transitionFunction): self
+    {
+        $this->transitionFunction = $transitionFunction;
+
+        return $this;
+    }
+
+    public function getTransitionDuration(): ?float
+    {
+        return $this->transitionDuration;
+    }
+
+    public function setTransitionDuration(?float $transitionDuration): self
+    {
+        $this->transitionDuration = $transitionDuration;
 
         return $this;
     }

@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block body %}
-    <div {{ stimulus_controller('color',{colors: colors,refreshInterval:3000}) }}
+    <div {{ stimulus_controller('color',{colors: colors,refreshInterval:user.transitionDuration * 1000}) }}
             class="flex-grow flex flex-col"
-            style="transition: all 0.75s ease;">
+            style="transition-duration:{{ user.transitionDuration }}s;transition-property: background-color;transition-timing-function: {{ user.transitionFunction }};">
         <h1 class="text-center w-full py-4 text-2xl font-bold" data-color-target="name">Name</h1>
         <p class="text-center w-full self-center text-base" style="margin: auto 0;" data-color-target="text">text</p>
     </div>
