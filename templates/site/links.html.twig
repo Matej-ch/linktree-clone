@@ -11,11 +11,11 @@
         <div class="relative sm:max-w-sm w-full px-6 md:px-0">
             {% for link in user.links %}
                 <div class="link">
-                    <a href="{{ link.link }}" class="text-center rounded p-4 mb-4 text-base block js-user-link"
+                    <a href="{{ link.link }}" class="text-center p-4 mb-4 block js-user-link"
                        data-link-id="{{ link.id }}"
                        target="_blank"
                        rel="nofollow"
-                       style="border: 2px solid {{ user.textColor|default('#000') }};color: {{ user.textColor|default('#000') }}">
+                       style="font-size:{{ user.textSize|default(1) }}rem;border: {{ user.borderSize|default(2) }}px solid {{ user.textColor|default('#000') }};color: {{ user.textColor|default('#000') }};border-radius: {{ user.borderRadius|default(0.25) }}rem">
                         {{ link.name }}
                     </a>
                 </div>

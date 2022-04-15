@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -45,6 +46,21 @@ class UserType extends AbstractType
                 'input' => 'number',
                 'scale' => 2,
                 'empty_data' => '0.75',
+            ])
+            ->add('textSize', NumberType::class, [
+                'required' => false,
+                'input' => 'number',
+                'scale' => 2,
+                'empty_data' => '1.0',
+            ])
+            ->add('borderSize', IntegerType::class, [
+                'required' => false,
+                'rounding_mode' => 0,
+
+            ])
+            ->add('borderRadius', IntegerType::class, [
+                'required' => false,
+                'rounding_mode' => 0,
             ]);
     }
 
