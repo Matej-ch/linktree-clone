@@ -41,6 +41,9 @@ class Link
     #[ORM\OrderBy(["created_at" => "DESC"])]
     private $linkVisits;
 
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
+    private $textColor;
+
     public function __construct()
     {
         $this->linkVisits = new ArrayCollection();
@@ -157,5 +160,17 @@ class Link
     public function updateTimestamps(PreUpdateEventArgs $eventArgs)
     {
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(?string $textColor): self
+    {
+        $this->textColor = $textColor;
+
+        return $this;
     }
 }

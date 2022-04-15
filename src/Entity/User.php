@@ -60,6 +60,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $transitionDuration = 0.75;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $textSize;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $borderSize;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $borderRadius;
+
     public function __construct()
     {
         $this->links = new ArrayCollection();
@@ -303,6 +312,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setTransitionDuration(?float $transitionDuration): self
     {
         $this->transitionDuration = $transitionDuration;
+
+        return $this;
+    }
+
+    public function getTextSize(): ?string
+    {
+        return $this->textSize;
+    }
+
+    public function setTextSize(?string $textSize): self
+    {
+        $this->textSize = $textSize;
+
+        return $this;
+    }
+
+    public function getBorderSize(): ?string
+    {
+        return $this->borderSize;
+    }
+
+    public function setBorderSize(?string $borderSize): self
+    {
+        $this->borderSize = $borderSize;
+
+        return $this;
+    }
+
+    public function getBorderRadius(): ?string
+    {
+        return $this->borderRadius;
+    }
+
+    public function setBorderRadius(?string $borderRadius): self
+    {
+        $this->borderRadius = $borderRadius;
 
         return $this;
     }
