@@ -14,32 +14,32 @@
 
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Name</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.name }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ link.name }}</div>
                     </div>
 
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Link</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.link }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ link.link }}</div>
                     </div>
 
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Created at</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.createdAt|ago }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ link.createdAt|ago }}</div>
                     </div>
 
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Updated at</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.updatedAt|ago }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ link.updatedAt|ago }}</div>
                     </div>
 
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Visits</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.linkVisits|length }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ link.linkVisits|length }}</div>
                     </div>
 
                     <div class="w-full md:w-1/2 flex flex-col">
                         <span class="font-semibold leading-none block px-2">Last visit</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ link.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ link.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
                     </div>
                 </div>
 

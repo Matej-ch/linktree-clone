@@ -23,28 +23,28 @@
 
                     <div class="flex flex-col">
                         <span class="font-semibold leading-none block px-2">Value</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2"
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2"
                              style="background: {{ color.value }}">{{ color.value }}</div>
                     </div>
 
                     <div class="flex flex-col">
                         <span class="font-semibold leading-none block px-2">Created at</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.createdAt|ago }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.createdAt|ago }}</div>
                     </div>
 
                     <div class="flex flex-col">
                         <span class="font-semibold leading-none block px-2">Updated at</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.updatedAt|ago }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.updatedAt|ago }}</div>
                     </div>
 
                     <div class="flex flex-col">
                         <span class="font-semibold leading-none block px-2">Visits</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.colorVisits|length }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.colorVisits|length }}</div>
                     </div>
 
                     <div class="flex flex-col">
                         <span class="font-semibold leading-none block px-2">Last visit</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full h-10 px-2">{{ color.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
                     </div>
 
                 </div>
