@@ -5,12 +5,12 @@ namespace App\Entity;
 use App\Repository\LinkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Doctrine\Persistence\Event\PreUpdateEventArgs;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
 #[HasLifecycleCallbacks]
@@ -40,6 +40,9 @@ class Link
     #[ORM\OneToMany(mappedBy: 'link', targetEntity: LinkVisit::class)]
     #[ORM\OrderBy(["created_at" => "DESC"])]
     private $linkVisits;
+
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
+    private $textColor;
 
     public function __construct()
     {
@@ -157,5 +160,17 @@ class Link
     public function updateTimestamps(PreUpdateEventArgs $eventArgs)
     {
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(?string $textColor): self
+    {
+        $this->textColor = $textColor;
+
+        return $this;
     }
 }

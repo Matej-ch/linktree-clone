@@ -41,9 +41,9 @@ final class UserFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'email' => self::faker()->email(),
+            'email' => self::faker()->unique()->email(),
             'roles' => [],
-            'name' => self::faker()->firstName(),
+            'name' => self::faker()->unique()->firstName(),
             'plainPassword' => 'tada',
             'isVerified' => true,
             'backgroundColor' => '#ffffff',

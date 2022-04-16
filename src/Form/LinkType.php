@@ -20,6 +20,10 @@ class LinkType extends AbstractType
             ->add('link', UrlType::class, [
                 'required' => true,
                 'default_protocol' => 'https'
+            ])
+            ->add('textColor', TextType::class, [
+                'required' => false,
+                'empty_data' => '#000000',
             ]);
     }
 
