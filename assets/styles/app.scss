@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  transition: opacity 200ms;
+}
+
 .triangle {
   @apply border-t-transparent border-r-transparent border-b-blue-500 border-l-transparent;
   width: 0;
@@ -59,7 +63,6 @@ tr th:nth-child(1) {
   border-radius: .625rem 0 0 .625rem;
 }
 
-/*
-[data-turbo-preview] body {
-  opacity: .2;
-}*/
+body.turbo-loading {
+  opacity: 0.8;
+}
