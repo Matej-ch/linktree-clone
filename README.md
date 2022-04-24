@@ -6,7 +6,6 @@
 
 ## Features
 
----------------------------------
 
 - Landing page
 - Signup new users
@@ -22,7 +21,6 @@
 
 ## Requirements
 
----------------------------------
 
 - PHP >= 8.0.2
 - Symfony >= 6
@@ -30,8 +28,6 @@
 - But any server supporting PHP 8 and higher should be fine
 
 ## TODO
-
----------------------------------
 
 1. [ ] Color visits
 2. [ ] Global gradient for text in links
