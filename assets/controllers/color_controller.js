@@ -48,9 +48,26 @@ export default class extends Controller {
 
         this.element.style.background = colorData.value;
 
-        const textColor = this.setTextColor(colorData.value);
-        this.nameTarget.style.color = textColor;
-        this.textTarget.style.color = textColor;
+        if (!colorData.textColor.length) {
+            this.textTarget.style.color = this.setTextColor(colorData.value);
+        } else {
+            if (colorData.textColor.includes('gradient')) {
+                this.nameTarget.cssText = `background:${colorData.textColor};-webkit-background-clip: text;-webkit-text-fill-color: transparent;`;
+            } else {
+                this.textTarget.style.color = colorData.textColor;
+            }
+        }
+
+        if (!colorData.nameColor.length) {
+            this.nameTarget.style.color = this.setTextColor(colorData.value);
+        } else {
+            if (colorData.nameColor.includes('gradient')) {
+                this.nameTarget.cssText = `background:${colorData.nameColor};-webkit-background-clip: text;-webkit-text-fill-color: transparent;`;
+            } else {
+                this.nameTarget.style.color = colorData.nameColor;
+            }
+        }
+
         this.nameTarget.innerText = colorData.name;
         this.textTarget.innerText = colorData.text;
     }

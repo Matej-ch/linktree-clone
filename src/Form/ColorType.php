@@ -19,7 +19,15 @@ class ColorType extends AbstractType
                 'empty_data' => '#ffffff',
                 'invalid_message' => 'Color must be set'
             ])
-            ->add('text', TextType::class);
+            ->add('text', TextType::class)
+            ->add('textColor', TextType::class, [
+                'required' => true,
+                'empty_data' => '#000000',
+            ])
+            ->add('nameColor', TextType::class, [
+                'required' => true,
+                'empty_data' => '#000000',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -44,6 +44,12 @@ class Color
     #[ORM\OrderBy(["created_at" => "DESC"])]
     private $colorVisits;
 
+    #[ORM\Column(type: 'string', length: 512)]
+    private $textColor;
+
+    #[ORM\Column(type: 'string', length: 512)]
+    private $nameColor;
+
     public function __construct()
     {
         $this->colorVisits = new ArrayCollection();
@@ -172,5 +178,29 @@ class Color
     public function updateTimestamps(PreUpdateEventArgs $eventArgs)
     {
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(string $textColor): self
+    {
+        $this->textColor = $textColor;
+
+        return $this;
+    }
+
+    public function getNameColor(): ?string
+    {
+        return $this->nameColor;
+    }
+
+    public function setNameColor(string $nameColor): self
+    {
+        $this->nameColor = $nameColor;
+
+        return $this;
     }
 }

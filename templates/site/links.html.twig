@@ -31,7 +31,10 @@
                            data-link-id="{{ link.id }}"
                            target="_blank"
                            rel="nofollow"
-                           style="color: {{ color }};font-size:{{ user.textSize|default(1) }}rem;border: {{ user.borderSize|default(2) }}px solid {{ user.textColor|default('#000') }};border-radius: {{ user.borderRadius|default(0.25) }}px">
+                           style="color: {{ color }};
+                                   font-size:{{ user.textSize|default(1) }}rem;
+                                   border: {{ user.borderSize|default(2) }}px solid {{ user.textColor|default('#000') }};
+                                   border-radius: {{ user.borderRadius|default(0.25) }}px">
                             {{ link.name }}
                         </a>
                     {% endif %}

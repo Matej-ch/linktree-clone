@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+    
     <div {{ stimulus_controller('color',{colors: colors,refreshInterval:user.transitionDuration * 1000}) }}
             class="flex-grow flex flex-col"
             style="transition-duration:{{ user.transitionDuration }}s;transition-property: background-color;transition-timing-function: {{ user.transitionFunction }};">

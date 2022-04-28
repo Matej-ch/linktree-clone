@@ -36,9 +36,11 @@ final class ColorFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'name' => self::faker()->text(),
             'value' => self::faker()->hexColor(),
+            'name' => self::faker()->text(),
             'text' => self::faker()->text(),
+            'nameColor' => '#000000',
+            'textColor' => '#000000',
             'created_at' => self::faker()->dateTime(),
             'updated_at' => self::faker()->dateTime(),
             'user' => UserFactory::new()

@@ -57,7 +57,8 @@ class SiteController extends AbstractController
             $colors[$i]['id'] = $color->getId();
             $colors[$i]['name'] = $color->getName();
             $colors[$i]['text'] = $color->getText();
-
+            $colors[$i]['textColor'] = $color->getTextColor();
+            $colors[$i]['nameColor'] = $color->getNameColor();
             $i++;
         }
 
