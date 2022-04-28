@@ -31,4 +31,4 @@
 
 1. [ ] Color visits
 2. [ ] Global gradient for text in links
-3. [ ] Gradient for text in color
+3. [x] Gradient for text in color
