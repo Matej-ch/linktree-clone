@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-
-    console.log('test');
     document.querySelector('body').addEventListener('click', e => {
         if (e.target.classList.contains('js-user-link')) {
 
@@ -12,7 +10,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 body: formData,
             }).then(res => res.json())
                 .then(data => {
-                    console.log(data);
                 })
                 .catch(err => console.error(err));
         }

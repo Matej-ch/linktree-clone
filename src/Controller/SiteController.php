@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Color;
+use App\Entity\ColorVisit;
 use App\Entity\Link;
 use App\Entity\LinkVisit;
 use App\Entity\User;
@@ -66,5 +68,18 @@ class SiteController extends AbstractController
             'user' => $user,
             'colors' => $colors
         ]);
+    }
+
+    #[Route('/visit-color/{color}', name: 'app_user_colors_visits')]
+    public function visitColor(Request $request, Color $color): JsonResponse
+    {
+        $visit = new ColorVisit();
+        $visit->setUserAgent($request->headers->get('User-Agent'));
+        $visit->setColor($color);
+
+        $this->doctrine->persist($visit);
+        $this->doctrine->flush();
+
+        return new JsonResponse(['success' => true]);
     }
 }
