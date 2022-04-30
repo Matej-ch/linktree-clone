@@ -43,13 +43,10 @@
 
                         <div class="color-picker" {{ stimulus_controller('color-picker') }}>
 
-                            <span class="flex flex-col">
+                            <span class="flex flex-row gap-2">
                                 {{ form_label(form.textColor, null, {label_attr: {'class': 'font-semibold leading-none block mb-2' }}) }}
 
-                                <span class="hidden">
-                                    {{ include('fragments/_color_gradient_icons.html.twig') }}
-                                </span>
-
+                                {{ include('fragments/_color_gradient_icons.html.twig') }}
                             </span>
 
                             {{ form_widget(form.textColor, {
@@ -60,7 +57,6 @@
 
                             <div data-color-picker-target="picker" class="py-4"></div>
                         </div>
-
                     </div>
                 </div>
 
