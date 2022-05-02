@@ -70,6 +70,19 @@ export default class extends Controller {
 
         this.nameTarget.innerText = colorData.name;
         this.textTarget.innerText = colorData.text;
+
+        this.visit(colorData);
+    }
+
+    async visit(color) {
+        const formData = new FormData();
+        formData.append('color', color);
+
+        fetch('/visit-color/' + color.id, {
+            method: 'POST',
+            body: formData,
+        }).then(res => res.json()).then(data => {
+        }).catch(err => console.error(err));
     }
 
     setTextColor(hexColor) {
