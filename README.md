@@ -29,6 +29,6 @@
 
 ## TODO
 
-1. [ ] Color visits
+1. [x] Color visits
 2. [x] Global gradient for text in links
 3. [x] Gradient for text in color
