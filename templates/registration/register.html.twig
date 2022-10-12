@@ -25,12 +25,6 @@
 
                 {{ form_start(registrationForm,{attr: {'class': 'mt-10'}}) }}
 
-                {% if not registrationForm.vars.valid %}
-                    <div class="text-red-900 bg-red-400 p-4 font-bold border-red-800 rounded-sm">
-                        {{ form_errors(registrationForm) }}
-                    </div>
-                {% endif %}
-
                 <div class="mt-7">
                     {{ form_row(registrationForm.email,{
                         label_attr: {'class': 'text-slate-custom'},

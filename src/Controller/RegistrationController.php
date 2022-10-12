@@ -47,10 +47,12 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_homepage');
         }
-        
+
+        $response = new Response(null, $form->isSubmitted() ? 422 : 200);
+
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-        ]);
+        ], $response);
     }
 
     #[Route('/verify', name: 'app_verify_email')]

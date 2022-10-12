@@ -10,7 +10,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Unique;
 
 class RegistrationFormType extends AbstractType
 {
@@ -25,16 +24,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Please enter a username.',
                     ])
                 ],
-            ]/* [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a username.',
-                    ]),
-                    new Unique([
-                        'message' => 'Username already in use.'
-                    ])
-                ],
-            ]*/)
+            ])
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
