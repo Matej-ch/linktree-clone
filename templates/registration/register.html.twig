@@ -4,7 +4,6 @@
     <meta name="turbo-cache-control" content="no-preview">
 {% endblock %}
 
-
 {% block title %}Register!{% endblock %}
 
 {% block header %}
@@ -60,6 +59,8 @@
                         REGISTER
                     </button>
                 </div>
+
+                {{ form_rest(registrationForm) }}
 
                 {{ form_end(registrationForm) }}
 
