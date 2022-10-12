@@ -19,17 +19,16 @@
 
 <main class="min-h-full flex flex-col items-stretch">
 
-    {% for flash in app.flashes('success') %}
-        <div class="alert alert-success">{{ flash }}</div>
-    {% endfor %}
-    {% for flash in app.flashes('danger') %}
-        <div class="alert alert-danger">{{ flash }}</div>
-    {% endfor %}
-
-
     {% block header %}
         {{ include('fragments/_admin_header.html.twig') }}
     {% endblock %}
+
+    {% for flash in app.flashes('success') %}
+        <div class="bg-emerald-300 text-emerald-800 p-4 rounded border-emerald-800 border mx-2 font-bold">{{ flash }}</div>
+    {% endfor %}
+    {% for flash in app.flashes('danger') %}
+        <div class="bg-red-300 text-red-800 p-4 rounded border-red-800 border mx-2 font-bold">{{ flash }}</div>
+    {% endfor %}
 
     {% block body %}{% endblock %}
 </main>
