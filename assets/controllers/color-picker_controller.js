@@ -1,4 +1,4 @@
-import {Controller} from "@hotwired/stimulus"
+import {Controller} from '@hotwired/stimulus';
 import '@easylogic/colorpicker/dist/colorpicker.css';
 import ColorPickerUI from '@easylogic/colorpicker'
 

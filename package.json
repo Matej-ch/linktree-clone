@@ -2,24 +2,26 @@
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
         "@hotwired/turbo": "^7.0.1",
-        "@symfony/stimulus-bridge": "^3.0.0",
+        "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
-        "@symfony/webpack-encore": "^1.7.0",
+        "@symfony/webpack-encore": "^3.0.0",
         "@tailwindcss/forms": "^0.4.0",
         "@tailwindcss/typography": "^0.5.2",
-        "autoprefixer": "^10.4.2",
-        "core-js": "^3.0.0",
+        "autoprefixer": "10.4.5",
+        "core-js": "^3.23.0",
+        "cross-env": "^7.0.3",
         "file-loader": "^6.0.0",
-        "postcss-loader": "^6.0.0",
-        "regenerator-runtime": "^0.13.2",
+        "postcss": "^8.4.5",
+        "postcss-loader": "^7.0.0",
+        "regenerator-runtime": "^0.13.9",
         "tailwindcss": "^3.0.15",
-        "webpack-notifier": "^1.6.0"
+        "webpack-notifier": "^1.15.0"
     },
     "dependencies": {
         "@easylogic/colorpicker": "^1.10.11",
         "sass": "^1.35.1",
-        "sass-loader": "^12.1.0",
-        "stimulus-use": "^0.41.0"
+        "sass-loader": "^13.0.0",
+        "stimulus-use": "^0.50.0"
     },
     "browserslist": [
         "> 0.5%",
@@ -27,7 +29,7 @@
         "Firefox ESR",
         "not dead"
     ],
-    "license": "UNLICENSED",
+    "license": "MIT",
     "private": true,
     "scripts": {
         "dev-server": "encore dev-server",
