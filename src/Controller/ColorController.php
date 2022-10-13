@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ColorController extends AbstractController
 {
     #[Route('/', name: 'app_color_index', methods: ['GET'])]
-    public function index(ColorRepository $colorRepository): Response
+    public function index(): Response
     {
         /** @var User $user */
         $user = $this->getUser();
