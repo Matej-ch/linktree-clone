@@ -1,4 +1,4 @@
-# Simple Linktree clone
+# Linkify (Simple Linktree clone)
 
 ### Created with Symfony 6.0
 
