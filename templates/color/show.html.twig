@@ -44,7 +44,7 @@
 
                     <div class="flex flex-col">
                         <span class="font-semibold leading-none block px-2">Last visit</span>
-                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
+                        <div class="leading-none text-slate-900 mt-4 rounded w-full px-2">{{ color.latestVisit ? color.latestVisit.createdAt|ago : 'Not yet visited' }}</div>
                     </div>
 
                 </div>
@@ -53,7 +53,7 @@
 
                     <a class="btn-main" href="{{ path('app_color_edit', {'id': color.id}) }}">Edit</a>
 
-                    <a class="btn-default" href="{{ path('app_dashboard') }}">Back to list</a>
+                    <a class="btn-default" href="{{ path('app_color_index') }}">Back to list</a>
 
                     <div class="ml-auto">
                         {{ include('color/_delete_form.html.twig') }}

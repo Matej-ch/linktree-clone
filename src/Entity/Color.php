@@ -40,7 +40,7 @@ class Color
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'color', targetEntity: ColorVisit::class)]
+    #[ORM\OneToMany(mappedBy: 'color', targetEntity: ColorVisit::class, cascade: ["remove"])]
     #[ORM\OrderBy(["created_at" => "DESC"])]
     private $colorVisits;
 

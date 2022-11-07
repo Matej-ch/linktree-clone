@@ -22,6 +22,7 @@ class ColorController extends AbstractController
 
         return $this->render('color/index.html.twig', [
             'colors' => $user->getColors(),
+            'user' => $user
         ]);
     }
 
@@ -63,7 +64,9 @@ class ColorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $colorRepository->add($color);
+
             return $this->redirectToRoute('app_color_index', [], Response::HTTP_SEE_OTHER);
         }
 
