@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SiteController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $doctrine)
+    public function __construct(private readonly EntityManagerInterface $doctrine)
     {
     }
 
