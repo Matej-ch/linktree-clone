@@ -11,6 +11,14 @@
            class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">
             Colors
         </a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}"
+               class="font-bold text-xl p-2 md:p-4 text-red-900 hover:text-red-600">
+                Admin
+            </a>
+        {% endif %}
+
         <a href="{{ path('app_user_edit') }}"
            class="font-bold text-xl p-4 text-slate-600 hover:text-blue-600">Settings</a>
 

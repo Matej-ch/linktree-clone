@@ -11,6 +11,14 @@
            class="font-bold text-xl p-2 md:p-4 text-slate-600 hover:text-blue-600">
             Colors
         </a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}"
+               class="font-bold text-xl p-2 md:p-4 text-red-900 hover:text-red-600">
+                Admin
+            </a>
+        {% endif %}
+
         <div class="group inline-block">
             <button class="outline-none focus:outline-none bg-white flex items-center"
                     style="min-width: 8rem">

@@ -138,7 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
 
     public function setName(?string $name): self
     {
-        $this->name = $name;
+        $this->name = str_replace(' ', '_', $name);
 
         return $this;
     }

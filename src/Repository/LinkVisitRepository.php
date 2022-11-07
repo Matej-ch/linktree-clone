@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\LinkVisit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,9 +19,6 @@ class LinkVisitRepository extends ServiceEntityRepository
         parent::__construct($registry, LinkVisit::class);
     }
 
-    /**
-     * @throws OptimisticLockException
-     */
     public function add(LinkVisit $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
@@ -31,9 +27,6 @@ class LinkVisitRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @throws OptimisticLockException
-     */
     public function remove(LinkVisit $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
