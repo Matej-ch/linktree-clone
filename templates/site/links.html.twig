@@ -21,8 +21,11 @@
                            style="background: {{ color }};
                                    -webkit-background-clip: text;
                                    -webkit-text-fill-color: transparent;
+                                   border-image-slice: 1;
+                                   border-width: {{ user.borderSize|default(2) }}px;
+                                   border-style: solid;
                                    font-size:{{ user.textSize|default(1) }}rem;
-                                   border: {{ user.borderSize|default(2) }}px solid {{ user.textColor|default('#000') }};
+                                   border-image-source: {{ color|default('#000') }};
                                    border-radius: {{ user.borderRadius|default(0.25) }}px">
                             {{ link.name }}
                         </a>
@@ -33,7 +36,7 @@
                            rel="nofollow"
                            style="color: {{ color }};
                                    font-size:{{ user.textSize|default(1) }}rem;
-                                   border: {{ user.borderSize|default(2) }}px solid {{ user.textColor|default('#000') }};
+                                   border: {{ user.borderSize|default(2) }}px solid {{ color|default('#000') }};
                                    border-radius: {{ user.borderRadius|default(0.25) }}px">
                             {{ link.name }}
                         </a>

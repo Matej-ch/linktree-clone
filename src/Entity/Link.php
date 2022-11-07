@@ -37,7 +37,7 @@ class Link
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'link', targetEntity: LinkVisit::class)]
+    #[ORM\OneToMany(mappedBy: 'link', targetEntity: LinkVisit::class, cascade: ["remove"])]
     #[ORM\OrderBy(["created_at" => "DESC"])]
     private $linkVisits;
 

@@ -6,6 +6,7 @@ use App\Entity\Color;
 use App\Entity\User;
 use App\Form\ColorType;
 use App\Repository\ColorRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,7 @@ class ColorController extends AbstractController
 
         return $this->render('color/index.html.twig', [
             'colors' => $user->getColors(),
+            'user' => $user
         ]);
     }
 
@@ -55,7 +57,7 @@ class ColorController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_color_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Color $color, ColorRepository $colorRepository): Response
+    public function edit(Color $color, Request $request,/* ColorRepository $colorRepository,*/ EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('EDIT', $color);
 
@@ -63,8 +65,14 @@ class ColorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $colorRepository->add($color);
-            return $this->redirectToRoute('app_color_index', [], Response::HTTP_SEE_OTHER);
+
+            $entityManager->persist($color);
+            $entityManager->flush();
+            //$colorRepository->add($color);
+
+            return $this->redirectToRoute('app_color_show', [
+                'id' => $color->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('color/edit.html.twig', [
