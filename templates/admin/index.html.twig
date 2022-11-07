@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <div class="bg-white py-4 md:py-4 px-4 md:px-4 xl:px-4">
+        <div class="mt-7 overflow-x-auto">
+            <table class="table-links text-slate-400 border-separate space-y-6 text-sm w-full">
+                <thead class="bg-slate-500 text-slate-300">
+                <tr class="bg-slate-300 text-slate-600 uppercase text-sm leading-normal">
+                    <th class="p-3">Email</th>
+                    <th class="p-3 text-left">Name</th>
+                    <th class="p-3 text-left">Verified user</th>
+                    <th class="p-3 text-left">BG color</th>
+                    <th class="p-3 text-left">Text color</th>
+                    <th class="p-3 text-left">Other settings</th>
+                    <th class="p-3 text-left"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr class="text-slate-500 hover:bg-gray-100 border-b border-slate-300 {{ loop.index is divisible by 2 ? '' : 'bg-slate-100' }}">
+                        <td class="p-3 text-center font-bold text-xl">{{ user.email }}</td>
+                        <td class="p-3">{{ user.name }}</td>
+                        <td class="p-3">{{ user.isVerified }}</td>
+                        <td class="p-3">{{ user.backgroundColor }}</td>
+                        <td class="p-3">{{ user.textColor }}</td>
+
+                        <td class="p-3">
+                            <div>Transition function: {{ user.transitionFunction }}</div>
+                            <div>Transition duration: {{ user.transitionDuration }}</div>
+                            <div>Text size: {{ user.textSize }}</div>
+                            <div>Border size: {{ user.borderSize }}</div>
+                            <div>Border radius: {{ user.borderRadius }}</div>
+                        </td>
+
+                        <td class="p-3">
+                            <a class="inline-block mr-4"
+                               href="{{ path('app_admin_view', {'id': user.id}) }}">
+                                <svg width="28"
+                                     height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <circle cx="12" cy="12" r="2"/>
+                                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"/>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
