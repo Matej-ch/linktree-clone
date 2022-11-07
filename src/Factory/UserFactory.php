@@ -42,7 +42,7 @@ final class UserFactory extends ModelFactory
     {
         return [
             'email' => self::faker()->unique()->email(),
-            'roles' => [],
+            'roles' => ['ROLE_USER'],
             'name' => self::faker()->unique()->firstName(),
             'plainPassword' => 'tada',
             'isVerified' => true,

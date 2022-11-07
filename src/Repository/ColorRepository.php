@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Color;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,9 +19,6 @@ class ColorRepository extends ServiceEntityRepository
         parent::__construct($registry, Color::class);
     }
 
-    /**
-     * @throws OptimisticLockException
-     */
     public function add(Color $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
@@ -31,9 +27,6 @@ class ColorRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @throws OptimisticLockException
-     */
     public function remove(Color $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
