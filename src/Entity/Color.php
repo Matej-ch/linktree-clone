@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Doctrine\Persistence\Event\PreUpdateEventArgs;
 
 #[ORM\Entity(repositoryClass: ColorRepository::class)]
 #[HasLifecycleCallbacks]
@@ -175,7 +174,7 @@ class Color
     }
 
     #[PreUpdate]
-    public function updateTimestamps(PreUpdateEventArgs $eventArgs)
+    public function updateTimestamps(\Doctrine\ORM\Event\PreUpdateEventArgs $eventArgs)
     {
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
