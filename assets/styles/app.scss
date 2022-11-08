@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "components/_fonts";
+
 body {
   transition: opacity 200ms;
 }
@@ -12,6 +14,11 @@ body {
   height: 0;
   border-style: solid;
   border-width: 0 0 250px 250px;
+}
+
+.user-content-wrapper {
+  font-family: 'Spartan', sans-serif;
+  font-weight: 600;
 }
 
 .pill {
