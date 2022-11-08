@@ -42,7 +42,10 @@ class Link
     private $linkVisits;
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
-    private $textColor;
+    private ?string $textColor = null;
+
+    #[ORM\Column(type: 'string', length: 512, nullable: true)]
+    private ?string $backgroundColor = null;
 
     public function __construct()
     {
@@ -170,6 +173,18 @@ class Link
     public function setTextColor(?string $textColor): self
     {
         $this->textColor = $textColor;
+
+        return $this;
+    }
+
+    public function getBackgroundColor(): ?string
+    {
+        return $this->backgroundColor;
+    }
+
+    public function setBackgroundColor(?string $backgroundColor): self
+    {
+        $this->backgroundColor = $backgroundColor;
 
         return $this;
     }

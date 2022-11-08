@@ -24,7 +24,12 @@ class LinkType extends AbstractType
             ->add('textColor', TextType::class, [
                 'required' => false,
                 'empty_data' => '#000000',
+            ])
+            ->add('backgroundColor', TextType::class, [
+                'required' => false,
+                'empty_data' => '#fcfcfc',
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -25,6 +25,7 @@
                     <th class="p-3">Name</th>
                     <th class="p-3 text-left">Link</th>
                     <th class="p-3 text-left">Text color</th>
+                    <th class="p-3 text-left">Button background color</th>
                     <th class="p-3 text-left">Visits</th>
                     <th class="p-3 text-left">Last visit</th>
                     <th class="p-3 text-left">Actions</th>
@@ -36,6 +37,7 @@
                         <td class="p-3 text-center font-bold text-xl">{{ link.name }}</td>
                         <td class="p-3"><a href="{{ link.link }}">{{ link.link }}</a></td>
                         <td class="p-3" style="background: {{ link.textColor }}">{{ link.textColor }}</td>
+                        <td class="p-3" style="background: {{ link.backgroundColor }}">{{ link.backgroundColor }}</td>
                         <td class="p-3">{{ link.linkVisits|length }}</td>
                         <td class="p-3">{{ link.latestVisit ? link.latestVisit.createdAt|ago : 'Not yet visited' }}</td>
                         <td class="p-3">

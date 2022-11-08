@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="relative mx-auto flex w-full items-center justify-center font-sans flex-grow"
+    <div class="relative mx-auto flex w-full items-center justify-center font-sans flex-grow user-content-wrapper"
          style="background: {{ user.backgroundColor|default('#fff') }}">
         <div class="relative sm:max-w-sm w-full px-6 md:px-0">
             {% for link in user.links %}
@@ -14,21 +14,47 @@
 
                     {% set color = link.textColor|default(user.textColor)|default('#000000') %}
                     {% if 'gradient' in color %}
-                        <a href="{{ link.link }}" class="text-center p-4 mb-4 block js-user-link"
-                           data-link-id="{{ link.id }}"
-                           target="_blank"
-                           rel="nofollow"
-                           style="background: {{ color }};
-                                   -webkit-background-clip: text;
-                                   -webkit-text-fill-color: transparent;
-                                   border-image-slice: 1;
-                                   border-width: {{ user.borderSize|default(2) }}px;
-                                   border-style: solid;
-                                   font-size:{{ user.textSize|default(1) }}rem;
-                                   border-image-source: {{ color|default('#000') }};
-                                   border-radius: {{ user.borderRadius|default(0.25) }}px">
-                            {{ link.name }}
-                        </a>
+
+                        <style>
+                            .custom-btn-{{ loop.index }}::before {
+                                content: "";
+                                position: absolute;
+                                inset: 0;
+                                border-radius: {{ user.borderRadius|default(0.25) }}px;
+                                padding: {{ user.borderSize|default(2) }}px;
+                                background: {{ color }};
+                                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                                -webkit-mask-composite: xor;
+                                mask-composite: exclude;
+                            }
+
+                            .custom-btn-wrapper-{{ loop.index }}::before {
+                                content: "";
+                                position: absolute;
+                                inset: {{ user.borderSize|default(2) }}px;
+                                background-color: {{ link.backgroundColor }};
+                                border-radius: {{ user.borderRadius|default(0.25) }}px;
+                            }
+                        </style>
+
+                        <div class="custom-btn-wrapper-{{ loop.index }} relative">
+                            <a href="{{ link.link }}"
+                               class="text-center p-4 mb-4 block js-user-link custom-btn-{{ loop.index }} relative"
+                               data-link-id="{{ link.id }}"
+                               target="_blank"
+                               rel="nofollow"
+                               style="border: {{ user.borderSize|default(2) }}px solid transparent;"
+                            >
+                                <span style="background: {{ color }};
+                                        -webkit-background-clip: text;
+                                        -webkit-text-fill-color: transparent;
+                                        font-size:{{ user.textSize|default(1) }}rem;">
+                                    {{ link.name }}
+                                </span>
+
+                            </a>
+                        </div>
+
                     {% else %}
                         <a href="{{ link.link }}" class="text-center p-4 mb-4 block js-user-link"
                            data-link-id="{{ link.id }}"
@@ -37,7 +63,7 @@
                            style="color: {{ color }};
                                    font-size:{{ user.textSize|default(1) }}rem;
                                    border: {{ user.borderSize|default(2) }}px solid {{ color|default('#000') }};
-                                   border-radius: {{ user.borderRadius|default(0.25) }}px">
+                                   border-radius: {{ user.borderRadius|default(0.25) }}px; background-color:{{ link.backgroundColor }} ">
                             {{ link.name }}
                         </a>
                     {% endif %}
