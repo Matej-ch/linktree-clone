@@ -31,7 +31,7 @@ class SecurityController extends AbstractController
 
     #[Route('/authenticate/2fa/enable', name: 'app_2fa_enable')]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
-    public function enable2fa(TotpAuthenticatorInterface $totpAuthenticator, EntityManagerInterface $entityManager)
+    public function enable2fa(TotpAuthenticatorInterface $totpAuthenticator, EntityManagerInterface $entityManager): Response
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -47,7 +47,7 @@ class SecurityController extends AbstractController
 
     #[Route('/authenticate/2fa/qr-code', name: 'app_qr_code')]
     #[IsGranted("ROLE_USER")]
-    public function displayGoogleAuthenticatorQrCode(TotpAuthenticatorInterface $totpAuthenticator)
+    public function displayGoogleAuthenticatorQrCode(TotpAuthenticatorInterface $totpAuthenticator): Response
     {
         $qrCodeContent = $totpAuthenticator->getQRContent($this->getUser());
         $result = Builder::create()

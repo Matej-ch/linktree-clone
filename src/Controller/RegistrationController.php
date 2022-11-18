@@ -6,9 +6,13 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
@@ -17,7 +21,12 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, VerifyEmailHelperInterface $verifyEmailHelper): Response
+    public function register(Request                     $request,
+                             UserPasswordHasherInterface $userPasswordHasher,
+                             EntityManagerInterface      $entityManager,
+                             VerifyEmailHelperInterface  $verifyEmailHelper,
+                             MailerInterface             $mailer,
+                             string                      $adminEmail): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -43,8 +52,20 @@ class RegistrationController extends AbstractController
                 ['id' => $user->getId()],
             );
 
-            //TODO finish sending real emails
-            $this->addFlash('success', 'Confirm your email at: ' . $signatureComponents->getSignedUrl());
+            $email = (new TemplatedEmail())
+                ->from(new Address($adminEmail))
+                ->to(new Address($user->getEmail(), $user->getName()))
+                ->subject("Linkify - confirm your email")
+                ->htmlTemplate('emails/registration.html.twig')
+                ->context(['emailUrl' => $signatureComponents->getSignedUrl()
+                ]);
+
+            try {
+                $mailer->send($email);
+                $this->addFlash('success', 'Confirmation email was sent to your email');
+            } catch (TransportExceptionInterface $e) {
+                $this->addFlash('success', 'Email error: ' . $e->getMessage());
+            }
 
             return $this->redirectToRoute('app_homepage');
         }
@@ -57,7 +78,10 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, VerifyEmailHelperInterface $verifyEmailHelper, UserRepository $userRepository, EntityManagerInterface $entityManager)
+    public function verifyUserEmail(Request                    $request,
+                                    VerifyEmailHelperInterface $verifyEmailHelper,
+                                    UserRepository             $userRepository,
+                                    EntityManagerInterface     $entityManager): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $user = $userRepository->find($request->query->get('id'));
         if (!$user) {
@@ -86,7 +110,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify/resend', name: 'app_verify_resend_email')]
-    public function resendVerifyEmail()
+    public function resendVerifyEmail(): Response
     {
         return $this->render('registration/resend_verify_email.html.twig');
     }
