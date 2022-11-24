@@ -12,11 +12,11 @@ when@prod:
     tracing:
       enabled: false
       dbal: # DB queries
-        enabled: true
+        enabled: false
       cache:
-        enabled: true
+        enabled: false
       twig: # templating engine
-        enabled: true
+        enabled: false
 
   #        If you are using Monolog, you also need these additional configuration and services to log the errors correctly:
   #        https://docs.sentry.io/platforms/php/guides/symfony/#monolog-integration
