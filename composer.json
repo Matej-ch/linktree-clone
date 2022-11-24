@@ -20,6 +20,7 @@
         "scheb/2fa-bundle": "^6.0",
         "scheb/2fa-totp": "^6.0",
         "sensio/framework-extra-bundle": "^6.1",
+        "sentry/sentry-symfony": "^4.4",
         "snc/redis-bundle": "^4.3",
         "symfony/asset": "6.1.*",
         "symfony/console": "6.1.*",

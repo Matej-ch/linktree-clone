@@ -1,0 +1,34 @@
+when@prod:
+  sentry:
+    dsn: '%env(SENTRY_DSN)%'
+    register_error_listener: false
+    options:
+      max_breadcrumbs: 50
+      in_app_exclude:
+        - "%kernel.build_dir%"
+        - "%kernel.cache_dir%"
+        - "%kernel.project_dir%/vendor"
+      environment: "%kernel.environment%"
+    tracing:
+      enabled: false
+      dbal: # DB queries
+        enabled: false
+      cache:
+        enabled: false
+      twig: # templating engine
+        enabled: false
+
+  #        If you are using Monolog, you also need these additional configuration and services to log the errors correctly:
+  #        https://docs.sentry.io/platforms/php/guides/symfony/#monolog-integration
+  #        register_error_listener: false
+
+  monolog:
+    handlers:
+      sentry:
+        type: sentry
+        level: !php/const Monolog\Logger::ERROR
+        hub_id: Sentry\State\HubInterface
+
+  services:
+    Monolog\Processor\PsrLogMessageProcessor:
+      tags: { name: monolog.processor, handler: sentry }
