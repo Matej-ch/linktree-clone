@@ -13,20 +13,21 @@ class ColorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('value', TextType::class, [
-                'required' => true,
-                'empty_data' => '#ffffff',
-                'invalid_message' => 'Color must be set'
+            ->add('name', TextType::class, [
             ])
-            ->add('text', TextType::class)
+            ->add('text', TextType::class, [
+                'required' => false
+            ])
+            ->add('value', TextType::class, [
+                'empty_data' => '#ffffff',
+            ])
             ->add('textColor', TextType::class, [
-                'required' => true,
                 'empty_data' => '#000000',
+                'required' => false
             ])
             ->add('nameColor', TextType::class, [
-                'required' => true,
                 'empty_data' => '#000000',
+                'required' => false
             ]);
     }
 

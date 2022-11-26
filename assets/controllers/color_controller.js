@@ -49,12 +49,12 @@ export default class extends Controller {
         this.element.style.background = colorData.value;
 
         if (!colorData.textColor.length) {
-            this.textTarget.style.color = this.setTextColor(colorData.value);
+            this.textTarget.setAttribute('style', `color:${this.setTextColor(colorData.value)}`);
         } else {
             if (colorData.textColor.includes('gradient')) {
-                this.nameTarget.cssText = `background:${colorData.textColor};-webkit-background-clip: text;-webkit-text-fill-color: transparent;`;
+                this.textTarget.setAttribute('style', `background:${colorData.textColor};-webkit-background-clip: text;-webkit-text-fill-color: transparent;`);
             } else {
-                this.textTarget.style.color = colorData.textColor;
+                this.textTarget.setAttribute('style', `color:${colorData.textColor}`);
             }
         }
 
@@ -62,9 +62,9 @@ export default class extends Controller {
             this.nameTarget.style.color = this.setTextColor(colorData.value);
         } else {
             if (colorData.nameColor.includes('gradient')) {
-                this.nameTarget.cssText = `background:${colorData.nameColor};-webkit-background-clip: text;-webkit-text-fill-color: transparent;`;
+                this.nameTarget.setAttribute('style', `background:${colorData.nameColor};-webkit-background-clip: text;-webkit-text-fill-color: transparent;`);
             } else {
-                this.nameTarget.style.color = colorData.nameColor;
+                this.nameTarget.setAttribute('style', `color:${colorData.nameColor}`);
             }
         }
 

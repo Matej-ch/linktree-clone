@@ -10,7 +10,7 @@
     <div {{ stimulus_controller('color',{colors: colors,refreshInterval:user.transitionDuration * 1000}) }}
             class="flex-grow flex flex-col user-content-wrapper"
             style="transition-duration:{{ user.transitionDuration }}s;transition-property: background-color;transition-timing-function: {{ user.transitionFunction }};">
-        <h1 class="text-center w-full py-4 text-2xl font-bold" data-color-target="name">Name</h1>
-        <p class="text-center w-full self-center text-base" style="margin: auto 0;" data-color-target="text">text</p>
+        <h1 class="text-center w-full py-4 text-2xl font-bold" data-color-target="name"></h1>
+        <p class="text-center w-full self-center text-base mx-0 my-auto" data-color-target="text"></p>
     </div>
 {% endblock %}
