@@ -34,12 +34,20 @@ class ColorController extends AbstractController
         $form = $this->createForm(ColorType::class, $color);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $color->setUser($this->getUser());
-            $colorRepository->add($color);
-            return $this->redirectToRoute('app_color_index', [], Response::HTTP_SEE_OTHER);
+        if ($form->isSubmitted()) {
+
+            if ($form->isValid()) {
+                $color->setUser($this->getUser());
+                $colorRepository->add($color);
+
+                $this->addFlash('success', 'Color added');
+
+                return $this->redirectToRoute('app_color_index', [], Response::HTTP_SEE_OTHER);
+            }
+
+            $this->addFlash('danger', 'Color cannot be added');
         }
-        
+
         return $this->renderForm('color/new.html.twig', [
             'color' => $color,
             'form' => $form,
