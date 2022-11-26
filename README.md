@@ -28,4 +28,3 @@
 - But any server supporting PHP 8 and higher should be fine
 
 ## TODO
-1. [x] Gradient for text in color
